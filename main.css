@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+}
+
+#icon {
+    height: 10vh;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+header i {
+    color: white;
+    font-size: 40px;
+    margin: auto auto;
+}
+
+header {
+    background-color: #555;
+    height: 10vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 11;
+}
+
+#tool-bar {
+    height: 90vh;
+    width: 6vw;
+    top: 10vh;
+    background-color: orange;
+    position: fixed;
+    z-index: 10;
+}
+
+#tool-bar div {
+    cursor: pointer;
+    font-size: 2.5vw;
+    color: white;
+    padding: 5px;
+    width: 5vw;
+    height: 5vw;
+    text-align: center;
+    margin: 0.5vw;
+}
+
+.press-btn{
+    background: #668ad8;/*Button Color*/
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+.press-btn.active {/*on Click*/
+    background: #5C78B9;/*Button Color*/
+    transform: translateY(4px);/*Move down*/
+    border-bottom: none;/*disappears*/
+}
+
+div.frame {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    /* disable this to enable scolling in canvas */
+}
+
+canvas {
+    background-color: transparent;
+    position: absolute;
+    top: -2500px;
+    left: -2500px;
+}
+
+#canvas-real {
+    border: solid;
+}
+
+div#viewpoint {
+    position: absolute;
+    top: 2500px;
+    left: 3000px;
+}
+

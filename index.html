@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Main.css -->
+    <link rel="stylesheet" href="./main.css">
+    <title>A new paint!</title>
+</head>
+<body>
+    
+    <header>
+        <div id="icon">
+            <i class="fas fa-paint-brush"></i>
+        </div>
+        <div>
+
+        </div>
+    </header>
+    <section id="tool-bar">
+        <div id="CIRCLE" class="press-btn">
+            <i class="far fa-circle" title="Circle"></i>
+        </div>
+        <div id="DRAG" class="press-btn">
+            <i class="fas fa-arrows-alt" title="Drag"></i>
+        </div>
+        <div id="PENCIL" class="press-btn">
+            <i class="fas fa-pencil-alt" title="Pencil"></i>
+        </div>
+        <div id="STRAIGHTLINE" class="press-btn">
+            <i class="material-icons" title="Straight line">timeline</i>
+        </div>
+        <div id="RECTANGLE" class="press-btn">
+            <i class="far fa-square"></i>
+        </div>
+        <div id="UNDO" class="press-btn">
+            <i class="far fa-square"></i>
+        </div>
+    </section>
+    
+    <div class="frame">
+        <canvas id="canvas-move" width="5000" height="5000"></canvas>
+        <canvas id="canvas-real" width="5000" height="5000"></canvas>
+        <canvas id="canvas-draft" width="5000" height="5000"></canvas>
+    </div>
+
+    <div id="viewpoint"></div>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./canvas-common.js"></script>
+    <script src="./drag.js"></script>
+    <script src="./circle.js"></script>
+    <script src="./drawing-line.js"></script>
+    <script src="./drawing-rectangle.js"></script>
+    <script src="./drawing-straightLine.js"></script>
+
+</body>
+</html>
