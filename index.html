@@ -21,6 +21,9 @@
             <i class="fas fa-paint-brush"></i>
         </div>
         <div>
+            
+        </div>
+        <div>
 
         </div>
     </header>
@@ -40,10 +43,30 @@
         <div id="RECTANGLE" class="press-btn">
             <i class="far fa-square"></i>
         </div>
-        <div id="UNDO" class="press-btn">
-            <i class="far fa-square"></i>
+        <div id="POLYGON" class="press-btn">
+            <i class="fas fa-draw-polygon"></i>
+        </div>
+        <div id="PEANUT">
+            <i class="fas fa-cookie"></i>
+        </div>
+        <div style="display: none;">
+            <img id="source1" src="./peanut.png" >
+        </div>
+        <div style="display: none;">
+            <img id="source2" src="./laugh.png" >
         </div>
     </section>
+    <div id="display" style="display: none">
+        <div id="finish" class="press-btn" style="display:none; background: orange ">
+            <i class="far fa-check-circle"></i>
+        </div>
+        <div id="lineDash" class="press-btn" style="display:none; background: pink" >
+            <i class="fas fa-braille"></i>
+        </div>
+        <div id="lineSolid" class="press-btn" style="display:none; background: pink">
+            <i  class="fas fa-align-justify"></i>
+        </div>
+    </div>
     
     <div class="frame">
         <canvas id="canvas-move" width="5000" height="5000"></canvas>
@@ -61,6 +84,8 @@
     <script src="./drawing-line.js"></script>
     <script src="./drawing-rectangle.js"></script>
     <script src="./drawing-straightLine.js"></script>
+    <script src="./drawing-polygon.js"></script>
+    <script src="./peanut.js"></script>
 
 </body>
 </html>
