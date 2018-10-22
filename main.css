@@ -16,6 +16,10 @@ header i {
     margin: auto auto;
 }
 
+i.material-icons {
+    font-size: 3.5vw;
+}
+
 header {
     background-color: #555;
     height: 10vh;
@@ -69,7 +73,7 @@ canvas {
     left: -2500px;
 }
 
-#canvas-real {
+#canvas-real, #canvas-draft {
     border: solid;
 }
 

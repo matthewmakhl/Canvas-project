@@ -10,7 +10,8 @@ let selected = {
     STRAIGHTLINE: 0,
     RECTANGLE: 0,
     DRAG: 0,
-    CIRCLE: 0
+    CIRCLE: 0,
+    SELECTION: 0
 }
 let mouseFunction = ['#canvas-draft','#canvas-move']
 
@@ -78,9 +79,9 @@ class PaintFunction{
 
 $(`#tool-bar #PENCIL`).click(function(){
     if (selected.PENCIL==0){
+        unselectOther('PENCIL');
         selected.main=1;
         selected.PENCIL=1;
-        unselectOther('PENCIL');
         $(`#PENCIL`).addClass('active');
         currentFunction = new DrawingLine(contextReal,contextDraft);
     }else{
@@ -93,9 +94,9 @@ $(`#tool-bar #PENCIL`).click(function(){
 
 $(`#tool-bar #RECTANGLE`).click(function(){
     if (selected.RECTANGLE==0){
+        unselectOther('RECTANGLE');
         selected.main=1;
         selected.RECTANGLE=1;
-        unselectOther('RECTANGLE');
         $(`#RECTANGLE`).addClass('active');
         currentFunction = new DrawingRectangle(contextReal,contextDraft);
     }else{
@@ -108,9 +109,9 @@ $(`#tool-bar #RECTANGLE`).click(function(){
 
 $(`#tool-bar #STRAIGHTLINE`).click(function(){
     if (selected.STRAIGHTLINE==0){
+        unselectOther('STRAIGHTLINE');
         selected.main=1;
         selected.STRAIGHTLINE=1;
-        unselectOther('STRAIGHTLINE');
         $(`#STRAIGHTLINE`).addClass('active');
         currentFunction = new DrawingStraightLine(contextReal,contextDraft);
     }else{
@@ -123,9 +124,9 @@ $(`#tool-bar #STRAIGHTLINE`).click(function(){
 
 $(`#tool-bar #CIRCLE`).click(function(){
     if (selected.CIRCLE==0){
+        unselectOther('CIRCLE');
         selected.main=1;
         selected.CIRCLE=1;
-        unselectOther('CIRCLE');
         $(`#CIRCLE`).addClass('active');
         currentFunction = new DrawingCircle(contextReal,contextDraft);
     }else{
@@ -138,9 +139,9 @@ $(`#tool-bar #CIRCLE`).click(function(){
 
 $(`#tool-bar #DRAG`).click(function(){
     if (selected.DRAG==0){
+        unselectOther('DRAG');
         selected.main=1;
         selected.DRAG=1;
-        unselectOther('DRAG');
         $(`#DRAG`).addClass('active');
         currentFunction = new DragTool(contextReal,contextDraft);
         $('#canvas-move').css('z-index','5');
@@ -155,16 +156,46 @@ $(`#tool-bar #DRAG`).click(function(){
     };
 })
 
+$(`#tool-bar #SELECTION`).click(function(){
+    if (selected.SELECTION==0){
+        unselectOther('SELECTION');
+        selected.main=1;
+        selected.SELECTION=1;
+        $(`#SELECTION`).addClass('active');
+        currentFunction = new Selection(canvasReal,canvasDraft,contextReal,contextDraft);
+    }else{
+        selected.main=0;
+        selected.SELECTION=0;
+        $(`#SELECTION`).removeClass('active');
+        currentFunction.drawCapture(currentFunction.contextReal,currentFunction.origX,currentFunction.origY);
+        currentFunction = {};
+        contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
+    };
+})
+
+$(`#tool-bar #CLEAR`).mousedown(function(){
+    unselectOther('CLEAR');
+    $(`#CLEAR`).addClass('active');
+})
+
+$(`#tool-bar #CLEAR`).mouseup(function(){
+    $(`#CLEAR`).removeClass('active');
+    contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
+    contextReal.clearRect(0,0,canvasDraft.width,canvasDraft.height);
+})
+
+$(`#tool-bar #CLEAR`).mouseleave(function(){
+    $(`#CLEAR`).removeClass('active');
+})
+
 // ==================================
 // unselect other active tools when selecting
 // ==================================
 
 function unselectOther(id){
     for (let i in selected) {
-        if ((i != 'main')&&(i != id)){
-            selected[i] = 0;
-            $(`#${i}`).removeClass('active');
-            currentFunction = {};
+        if ((i != 'main')&&(selected[i]!=0)){
+            $(`#tool-bar #${i}`).trigger('click');
         }
         if (i == 'DRAG') {
             $('#canvas-move').css('z-index','-1');
