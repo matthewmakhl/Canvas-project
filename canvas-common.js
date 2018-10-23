@@ -11,6 +11,7 @@ let selected = {
     RECTANGLE: 0,
     DRAG: 0,
     CIRCLE: 0,
+    POLYGON: 0,
     SELECTION: 0
 }
 let mouseFunction = ['#canvas-draft','#canvas-move']
@@ -61,6 +62,16 @@ for (let i in mouseFunction) {
             currentFunction.onMouseEnter([mouseX,mouseY],e);
         }
     });
+
+    $(mouseFunction[i]).dblclick(function(e){
+        if (selected.main) {
+        dragging = false;
+        let mouseX = e.offsetX;
+        let mouseY = e.offsetY;
+        currentFunction.onDobleClick([mouseX,mouseY],e);
+        }
+    });
+    
 }
 
 class PaintFunction{
@@ -71,6 +82,8 @@ class PaintFunction{
     onMouseUp(){}
     onMouseLeave(){}
     onMouseEnter(){}
+    onDobleClick(){}
+
 } 
 
 // ==================================
@@ -154,6 +167,29 @@ $(`#tool-bar #DRAG`).click(function(){
         $('#canvas-move').css('z-index','-1');
         $('#canvas-move').css('cursor','default');
     };
+})
+
+$(`#tool-bar #POLYGON`).click(function(){
+    if (selected.POLYGON==0){
+        selected.main=1;
+        selected.DRAG=1;
+        unselectOther('POLYGON');
+        $(`#POLYGON`).addClass('active');
+        currentFunction = new DrawingPolygon(contextReal,contextDraft);
+
+    }else{
+        selected.main=0;
+        selected.DRAG=0;
+        $(`#POLYGON`).removeClass('active');
+        currentFunction = {};
+    };
+})
+
+$('#PEANUT').click(function(e){
+    selected.main=1;
+    console.log('peanut');
+    console.log(contextReal,contextDraft)
+    currentFunction= new DrawingPeanut(contextReal,contextDraft);
 })
 
 $(`#tool-bar #SELECTION`).click(function(){
