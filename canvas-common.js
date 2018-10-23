@@ -169,9 +169,9 @@ $(`#tool-bar #DRAG`).click(function(){
 
 $(`#tool-bar #POLYGON`).click(function(){
     if (selected.POLYGON==0){
+        unselectOther('POLYGON');
         selected.main=1;
         selected.DRAG=1;
-        unselectOther('POLYGON');
         $(`#POLYGON`).addClass('active');
         currentFunction = new DrawingPolygon(contextReal,contextDraft);
 
