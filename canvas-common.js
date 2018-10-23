@@ -1,3 +1,4 @@
+
 let canvasReal = document.getElementById('canvas-real');
 let contextReal = canvasReal.getContext('2d');
 let canvasDraft = document.getElementById('canvas-draft');
@@ -12,6 +13,7 @@ let selected = {
     DRAG: 0,
     CIRCLE: 0,
     SELECTION: 0,
+    POLYGON: 0,
     TYPE: 0
 }
 let mouseFunction = ['#canvas-draft','#canvas-move']
@@ -163,6 +165,29 @@ $(`#tool-bar #DRAG`).click(function(){
         $('#canvas-move').css('z-index','-1');
         $('#canvas-move').css('cursor','default');
     };
+})
+
+$(`#tool-bar #POLYGON`).click(function(){
+    if (selected.POLYGON==0){
+        selected.main=1;
+        selected.DRAG=1;
+        unselectOther('POLYGON');
+        $(`#POLYGON`).addClass('active');
+        currentFunction = new DrawingPolygon(contextReal,contextDraft);
+
+    }else{
+        selected.main=0;
+        selected.DRAG=0;
+        $(`#POLYGON`).removeClass('active');
+        currentFunction = {};
+    };
+})
+
+$('#PEANUT').click(function(e){
+    selected.main=1;
+    console.log('peanut');
+    console.log(contextReal,contextDraft)
+    currentFunction= new DrawingPeanut(contextReal,contextDraft);
 })
 
 $(`#tool-bar #SELECTION`).click(function(){
