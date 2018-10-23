@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Main.css -->
     <link rel="stylesheet" href="./main.css">
     <title>A new paint!</title>
 </head>
-
 <body>
-
+    
     <header>
         <div id="icon">
             <i class="fas fa-paint-brush"></i>
+        </div>
+        <div>
             <input type="color" value="#fff000" id="color">
+        </div>
+        <div>
             <input type="text" name="valuebox" value="5" id="valuebox">
         </div>
     </header>
@@ -49,6 +49,21 @@
         <div id="CLEAR" class="press-btn" title="Clear all">
             <i class="material-icons">clear</i>
         </div>
+        <div id="TYPE" class="press-btn" title="Text">
+            <i class="material-icons">text_format</i>
+        </div>
+        <div id="POLYGON" class="press-btn">
+            <i class="fas fa-draw-polygon"></i>
+        </div>
+        <div id="PEANUT">
+            <i class="fas fa-cookie"></i>
+        </div>
+        <div style="display: none;">
+            <img id="source1" src="./peanut.png" >
+        </div>
+        <div style="display: none;">
+            <img id="source2" src="./laugh.png" >
+        </div>
         <div id="ZOOMIN" class="press-btn" title="Zoomin">
             <i class="fa fa-plus"></i> <!-- zoom in -->
         </div>
@@ -70,16 +85,27 @@
         <div id="WIDTHDOWN" class="press-btn" title="Widthdown">
             <i class="fa fa-arrow-down"></i> <!-- redo -->
         </div>
-        
     </section>
-
+    
+    <div id="display" style="display: none">
+        <div id="finish" class="press-btn" style="display:none; background: orange ">
+            <i class="far fa-check-circle"></i>
+        </div>
+        <div id="lineDash" class="press-btn" style="display:none; background: pink" >
+            <i class="fas fa-braille"></i>
+        </div>
+        <div id="lineSolid" class="press-btn" style="display:none; background: pink">
+            <i  class="fas fa-align-justify"></i>
+        </div>
+    </div>
+  
     <div class="frame">
-        <canvas id="canvas-move" width="2000" height="2000"></canvas>
-        <canvas id="canvas-real" width="2000" height="2000"></canvas>
-        <canvas id="canvas-draft" width="2000" height="2000"></canvas>
+        <canvas id="canvas-move" width="3000" height="3000"></canvas>
+        <canvas id="canvas-real" width="3000" height="3000"></canvas>
+        <canvas id="canvas-draft" width="3000" height="3000"></canvas>
     </div>
 
-    <div id="viewpoint"></div>
+    <!-- <div id="viewpoint"></div> -->
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -89,7 +115,10 @@
     <script src="./drawing-line.js"></script>
     <script src="./drawing-rectangle.js"></script>
     <script src="./drawing-straightLine.js"></script>
+    <script src="./drawing-polygon.js"></script>
+    <script src="./peanut.js"></script>
     <script src="./selection.js"></script>
+    <script src="./text.js"></script>
     <script src="./drawing-zooming.js"></script>
     <script src="./drawing-undo.js"></script>
     <script src="./drawing-redo.js"></script>

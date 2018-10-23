@@ -11,8 +11,8 @@ class DrawingUndo extends PaintFunction{
             var img = document.createElement('img');
             img.setAttribute('src', ImgS.undoList[ImgS.undoList.length - 1]);//store the last img after elinmating undolist array
             img.onload = function () {
-            contextReal.clearRect(0, 0, 2000, 2000); //clear the whole canvas
-            contextReal.drawImage(img, 0, 0, 2000, 2000, 0, 0, 2000, 2000); // draw the newest last img on the canvas
+            contextReal.clearRect(0, 0, 3000, 3000); //clear the whole canvas
+            contextReal.drawImage(img, 0, 0, 3000, 3000, 0, 0, 3000, 3000); // draw the newest last img on the canvas
             }
             img.onload();
         }
