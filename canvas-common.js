@@ -1,8 +1,9 @@
+
 let canvasReal = document.getElementById('canvas-real');
 let contextReal = canvasReal.getContext('2d');
 let canvasDraft = document.getElementById('canvas-draft');
 let contextDraft = canvasDraft.getContext('2d');
-let currentFunction;
+let currentFunction = {};
 let dragging = false;
 let selected = {
     main: 0,
@@ -11,10 +12,12 @@ let selected = {
     RECTANGLE: 0,
     DRAG: 0,
     CIRCLE: 0,
+    SELECTION: 0,
     POLYGON: 0,
-    SELECTION: 0
+    TYPE: 0
 }
 let mouseFunction = ['#canvas-draft','#canvas-move']
+let dragLocation = [-1000,-1500]
 
 for (let i in mouseFunction) {
     $(mouseFunction[i]).mousedown(function(e){
@@ -63,16 +66,13 @@ for (let i in mouseFunction) {
         }
     });
 
-    $(mouseFunction[i]).dblclick(function(e){
-        if (selected.main) {
-        dragging = false;
-        let mouseX = e.offsetX;
-        let mouseY = e.offsetY;
-        currentFunction.onDobleClick([mouseX,mouseY],e);
-        }
-    });
-    
 }
+
+$(document).keypress(function(e){
+    if (selected.main&&selected.TYPE) {
+        currentFunction.onType(e);
+    }
+});
 
 class PaintFunction{
     constructor(){}
@@ -82,8 +82,6 @@ class PaintFunction{
     onMouseUp(){}
     onMouseLeave(){}
     onMouseEnter(){}
-    onDobleClick(){}
-
 } 
 
 // ==================================
@@ -222,7 +220,38 @@ $(`#tool-bar #CLEAR`).mouseup(function(){
 
 $(`#tool-bar #CLEAR`).mouseleave(function(){
     $(`#CLEAR`).removeClass('active');
+});
+
+$(`#tool-bar #TYPE`).click(function(){
+    if (selected.TYPE==0){
+        unselectOther('TYPE');
+        selected.main=1;
+        selected.TYPE=1;
+        $(`#TYPE`).addClass('active');
+        $('#canvas-draft').css('cursor','text');
+        $('body').css('cursor','text');
+        currentFunction = new TypeText(contextReal,contextDraft);
+    } else {
+        currentFunction.typedText = currentFunction.typedText.replace('║','');
+        currentFunction.type(contextReal);
+        selected.main=0;
+        selected.TYPE=0;
+        $(`#TYPE`).removeClass('active');
+        currentFunction = {};
+        $('#canvas-draft').css('cursor','default');
+        $('body').css('cursor','default');
+    };
 })
+
+setInterval(
+    function(){
+        if (currentFunction!={}){
+            if (currentFunction.constructor.name == 'TypeText') {
+                currentFunction.blinkText();
+            }
+        }
+    },500
+);
 
 // ==================================
 // unselect other active tools when selecting

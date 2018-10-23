@@ -21,9 +21,6 @@
             <i class="fas fa-paint-brush"></i>
         </div>
         <div>
-            
-        </div>
-        <div>
 
         </div>
     </header>
@@ -43,6 +40,15 @@
         <div id="RECTANGLE" class="press-btn" title="Rectangle">
             <i class="far fa-square"></i>
         </div>
+        <div id="SELECTION" class="press-btn" title="Select">
+            <i class="material-icons">select_all</i>
+        </div>
+        <div id="CLEAR" class="press-btn" title="Clear all">
+            <i class="material-icons">clear</i>
+        </div>
+        <div id="TYPE" class="press-btn" title="Text">
+            <i class="material-icons">text_format</i>
+        </div>
         <div id="POLYGON" class="press-btn">
             <i class="fas fa-draw-polygon"></i>
         </div>
@@ -54,13 +60,9 @@
         </div>
         <div style="display: none;">
             <img id="source2" src="./laugh.png" >
-        <div id="SELECTION" class="press-btn" title="Select">
-            <i class="material-icons">select_all</i>
-        </div>
-        <div id="CLEAR" class="press-btn" title="Clear all">
-            <i class="material-icons">clear</i>
         </div>
     </section>
+    
     <div id="display" style="display: none">
         <div id="finish" class="press-btn" style="display:none; background: orange ">
             <i class="far fa-check-circle"></i>
@@ -72,14 +74,14 @@
             <i  class="fas fa-align-justify"></i>
         </div>
     </div>
-    
+  
     <div class="frame">
-        <canvas id="canvas-move" width="5000" height="5000"></canvas>
-        <canvas id="canvas-real" width="5000" height="5000"></canvas>
-        <canvas id="canvas-draft" width="5000" height="5000"></canvas>
+        <canvas id="canvas-move" width="3000" height="3000"></canvas>
+        <canvas id="canvas-real" width="3000" height="3000"></canvas>
+        <canvas id="canvas-draft" width="3000" height="3000"></canvas>
     </div>
 
-    <div id="viewpoint"></div>
+    <!-- <div id="viewpoint"></div> -->
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -92,6 +94,7 @@
     <script src="./drawing-polygon.js"></script>
     <script src="./peanut.js"></script>
     <script src="./selection.js"></script>
+    <script src="./text.js"></script>
 
 </body>
 </html>
