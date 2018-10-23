@@ -91,9 +91,9 @@ class PaintFunction{
 
 $(`#tool-bar #PENCIL`).click(function(){
     if (selected.PENCIL==0){
+        unselectOther('PENCIL');
         selected.main=1;
         selected.PENCIL=1;
-        unselectOther('PENCIL');
         $(`#PENCIL`).addClass('active');
         currentFunction = new DrawingLine(contextReal,contextDraft);
     }else{
@@ -106,9 +106,9 @@ $(`#tool-bar #PENCIL`).click(function(){
 
 $(`#tool-bar #RECTANGLE`).click(function(){
     if (selected.RECTANGLE==0){
+        unselectOther('RECTANGLE');
         selected.main=1;
         selected.RECTANGLE=1;
-        unselectOther('RECTANGLE');
         $(`#RECTANGLE`).addClass('active');
         currentFunction = new DrawingRectangle(contextReal,contextDraft);
     }else{
@@ -121,9 +121,9 @@ $(`#tool-bar #RECTANGLE`).click(function(){
 
 $(`#tool-bar #STRAIGHTLINE`).click(function(){
     if (selected.STRAIGHTLINE==0){
+        unselectOther('STRAIGHTLINE');
         selected.main=1;
         selected.STRAIGHTLINE=1;
-        unselectOther('STRAIGHTLINE');
         $(`#STRAIGHTLINE`).addClass('active');
         currentFunction = new DrawingStraightLine(contextReal,contextDraft);
     }else{
@@ -136,9 +136,9 @@ $(`#tool-bar #STRAIGHTLINE`).click(function(){
 
 $(`#tool-bar #CIRCLE`).click(function(){
     if (selected.CIRCLE==0){
+        unselectOther('CIRCLE');
         selected.main=1;
         selected.CIRCLE=1;
-        unselectOther('CIRCLE');
         $(`#CIRCLE`).addClass('active');
         currentFunction = new DrawingCircle(contextReal,contextDraft);
     }else{
@@ -151,13 +151,14 @@ $(`#tool-bar #CIRCLE`).click(function(){
 
 $(`#tool-bar #DRAG`).click(function(){
     if (selected.DRAG==0){
+        unselectOther('DRAG');
         selected.main=1;
         selected.DRAG=1;
-        unselectOther('DRAG');
         $(`#DRAG`).addClass('active');
         currentFunction = new DragTool(contextReal,contextDraft);
         $('#canvas-move').css('z-index','5');
         $('#canvas-move').css('cursor','all-scroll');
+        
     }else{
         selected.main=0;
         selected.DRAG=0;
@@ -170,16 +171,21 @@ $(`#tool-bar #DRAG`).click(function(){
 
     $(`#tool-bar #POLYGON`).click(function(){
         if (selected.POLYGON==0){
-            selected.main=1;
-            selected.DRAG=1;
             unselectOther('POLYGON');
+            selected.main=1;
+            selected.POLYGON=1;
             $(`#POLYGON`).addClass('active');
+
+            $('#display').css('display','block');
             currentFunction = new DrawingPolygon(contextReal,contextDraft);
 
         }else{
             selected.main=0;
-            selected.DRAG=0;
+            selected.POLYGON=0;
+            console.log('unselect')
             $(`#POLYGON`).removeClass('active');
+
+            $('#display').css('display','none');
             currentFunction = {};
         };
     })
@@ -199,10 +205,8 @@ $(`#tool-bar #DRAG`).click(function(){
 
 function unselectOther(id){
     for (let i in selected) {
-        if ((i != 'main')&&(i != id)){
-            selected[i] = 0;
-            $(`#${i}`).removeClass('active');
-            currentFunction = {};
+        if ((i != 'main')&&(selected[i]!=0)){
+            $(`#tool-bar #${i}`).trigger('click');
         }
         if (i == 'DRAG') {
             $('#canvas-move').css('z-index','-1');

@@ -15,8 +15,8 @@ class DrawingPeanut extends PaintFunction {
         
     onMouseDown(coord){
         console.log('down');
-        this.contextReal.drawImage(this.source2,coord[0],coord[1], 500, 300)
-        this.contextReal.drawImage(this.source1, 100, 100,200,200,coord[0] -200,coord[1]+300, 300, 300)
+        this.contextReal.drawImage(this.source2,coord[0],coord[1], 80, 50)
+        this.contextReal.drawImage(this.source1, 50, 50,20,20,coord[0] -20,coord[1]+30, 30, 30)
 
 
     }

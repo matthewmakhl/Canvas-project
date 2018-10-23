@@ -34,10 +34,10 @@ header {
 }
 
 #display {
-    height: 25vh;
+    height: 35vh;
     width: 6vw;
     top: 10vh;
-    left: 10vh;
+    left: 15vh;
     background-color: green;
     position: fixed;
     z-index: 10;
