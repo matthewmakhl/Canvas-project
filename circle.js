@@ -4,11 +4,14 @@ class DrawingCircle extends PaintFunction{
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
+        
     }
     
     onMouseDown(coord,event){
         this.origX = coord[0];
         this.origY = coord[1];
+        this.contextReal.strokeStyle = document.getElementById("color").value; // william modify
+        this.contextReal.lineWidth = document.getElementById("valuebox").value; //william modify
     }
     onDragging(coord,event){
         this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
@@ -24,7 +27,7 @@ class DrawingCircle extends PaintFunction{
     onMouseEnter(){}
 
     draw(DR,x,y){
-        contextDraft.clearRect(0,0,5000,5000);
+        contextDraft.clearRect(0,0,2000,2000);
         DR.beginPath();
         DR.arc((this.origX+x)/2,(this.origY+y)/2,(Math.sqrt(Math.pow(this.origX-x,2) + Math.pow(this.origY-y,2)))/2,0,2*Math.PI);
         DR.stroke();

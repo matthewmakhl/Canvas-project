@@ -6,9 +6,9 @@ class DrawingStraightLine extends PaintFunction {
     }
 
     onMouseDown(coord,event){
-        this.contextDraft.strokeStyle = '#df4b26';
+        this.contextDraft.strokeStyle = document.getElementById("color").value;
         this.contextDraft.lineJoin = 'round';
-        this.contextDraft.lineWidth = 5;
+        this.contextDraft.lineWidth = document.getElementById("valuebox").value;
         this.origX = coord[0];
         this.origY = coord[1];
     }
@@ -21,7 +21,7 @@ class DrawingStraightLine extends PaintFunction {
     onMouseMove(coord, event){
     };
     onMouseUp(coord, event){
-        this.contextReal.strokeStyle = '#df4b26';
+        this.contextReal.strokeStyle = document.getElementById("color").value;
         this.contextReal.lineJoin = 'round';
         this.contextReal.lineWidth = 5;
         this.draw(contextReal, coord[0],coord[1])

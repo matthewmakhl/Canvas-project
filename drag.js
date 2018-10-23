@@ -3,8 +3,8 @@ class DragTool extends PaintFunction{
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.xd = -2500;
-        this.yd = -2500;
+        this.xd = -1000;
+        this.yd = -1000;
     }
     
     onMouseDown(coord,event){

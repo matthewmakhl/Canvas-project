@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <!-- Main.css -->
     <link rel="stylesheet" href="./main.css">
     <title>A new paint!</title>
 </head>
+
 <body>
-    
+
     <header>
         <div id="icon">
             <i class="fas fa-paint-brush"></i>
-        </div>
-        <div>
-
+            <input type="color" value="#fff000" id="color">
+            <input type="text" name="valuebox" value="5" id="valuebox">
         </div>
     </header>
     <section id="tool-bar">
@@ -46,12 +49,34 @@
         <div id="CLEAR" class="press-btn" title="Clear all">
             <i class="material-icons">clear</i>
         </div>
+        <div id="ZOOMIN" class="press-btn" title="Zoomin">
+            <i class="fa fa-plus"></i> <!-- zoom in -->
+        </div>
+        <div id="ZOOMOUT" class="press-btn" title="Zoomout">
+            <i class="fa fa-minus"></i> <!-- zoom out -->
+        </div>
+        <div id="NULL" class="press-btn" title="Null">
+            <i class="fa fa-zero"></i> <!-- null -->
+        </div>
+        <div id="UNDO" class="press-btn" title="Undo">
+            <i class="fa fa-undo"></i> <!-- undo -->
+        </div>
+        <div id="REDO" class="press-btn" title="Redo">
+            <i class="fa fa-redo"></i> <!-- redo -->
+        </div>
+        <div id="WIDTHUP" class="press-btn" title="Widthup">
+            <i class="fa fa-arrow-up"></i> <!-- redo -->
+        </div>
+        <div id="WIDTHDOWN" class="press-btn" title="Widthdown">
+            <i class="fa fa-arrow-down"></i> <!-- redo -->
+        </div>
+        
     </section>
-    
+
     <div class="frame">
-        <canvas id="canvas-move" width="5000" height="5000"></canvas>
-        <canvas id="canvas-real" width="5000" height="5000"></canvas>
-        <canvas id="canvas-draft" width="5000" height="5000"></canvas>
+        <canvas id="canvas-move" width="2000" height="2000"></canvas>
+        <canvas id="canvas-real" width="2000" height="2000"></canvas>
+        <canvas id="canvas-draft" width="2000" height="2000"></canvas>
     </div>
 
     <div id="viewpoint"></div>
@@ -65,6 +90,9 @@
     <script src="./drawing-rectangle.js"></script>
     <script src="./drawing-straightLine.js"></script>
     <script src="./selection.js"></script>
-
+    <script src="./drawing-zooming.js"></script>
+    <script src="./drawing-undo.js"></script>
+    <script src="./drawing-redo.js"></script>
 </body>
+
 </html>
