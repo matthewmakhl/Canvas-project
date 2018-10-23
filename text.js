@@ -10,6 +10,7 @@ class TypeText extends PaintFunction{
     
     onMouseDown(coord,event){
         if (this.typing==1) {
+            this.typedText = this.typedText.replace('║','');
             this.type(this.contextReal)
         }
         this.origX = coord[0];
@@ -23,7 +24,7 @@ class TypeText extends PaintFunction{
     onMouseLeave(){}
     onMouseEnter(){}
 
-    onType(e){
+    onType(coord,e){
         var keycode = parseInt(e.which); //delete or backspace
         if (this.typing==1) {
             if (keycode == 46 || keycode == 8) {
@@ -38,10 +39,10 @@ class TypeText extends PaintFunction{
         }
     }
 
-    type(DR){
+    type(ctx){
         contextDraft.clearRect(0,0,5000,5000);
-        DR.font = '30px Arial';
-        DR.fillText(this.typedText,this.origX,this.origY);
+        ctx.font = '30px Arial';
+        ctx.fillText(this.typedText,this.origX,this.origY);
     }
 
     blinkText(){
