@@ -69,17 +69,17 @@ div.frame {
 canvas {
     background-color: transparent;
     position: absolute;
-    top: -2500px;
-    left: -2500px;
+    left: -1000px;
+    top: -1500px;
 }
 
 #canvas-real, #canvas-draft {
     border: solid;
 }
 
-div#viewpoint {
+/* div#viewpoint {
     position: absolute;
     top: 2500px;
     left: 3000px;
-}
+} */
 
