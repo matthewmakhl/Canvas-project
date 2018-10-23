@@ -171,13 +171,13 @@ $(`#tool-bar #POLYGON`).click(function(){
     if (selected.POLYGON==0){
         unselectOther('POLYGON');
         selected.main=1;
-        selected.DRAG=1;
+        selected.POLYGON=1;
         $(`#POLYGON`).addClass('active');
         currentFunction = new DrawingPolygon(contextReal,contextDraft);
 
     }else{
         selected.main=0;
-        selected.DRAG=0;
+        selected.POLYGON=0;
         $(`#POLYGON`).removeClass('active');
         currentFunction = {};
     };
