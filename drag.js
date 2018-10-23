@@ -1,3 +1,38 @@
+class DragTool extends PaintFunction{
+    constructor(contextReal,contextDraft){
+        super();
+        this.contextReal = contextReal;
+        this.contextDraft = contextDraft;
+        this.xd = -2500;
+        this.yd = -2500;
+    }
+    
+    onMouseDown(coord,event){
+        this.origX = coord[0] - this.xd;
+        this.origY = coord[1] - this.yd;
+    }
+    onDragging(coord,event){
+        this.drag(coord[0],coord[1]);
+    }
+
+    onMouseMove(){}
+    onMouseUp(coord){
+        this.xd = coord[0] - this.origX;
+        this.yd = coord[1] - this.origY;
+        $('#canvas-move').css('left',this.xd);
+        $('#canvas-move').css('top',this.yd); 
+    }
+    onMouseLeave(){}
+    onMouseEnter(){}
+
+    drag(x,y){
+        $('#canvas-real').css('left',x - this.origX);
+        $('#canvas-draft').css('left',x - this.origX);
+        $('#canvas-real').css('top',y - this.origY);
+        $('#canvas-draft').css('top',y - this.origY);
+    }
+}
+
 // let xd = -2500;
 // let yd = -2500;
 // dragging = false;
@@ -53,37 +88,3 @@
 //     $('#canvas-draft').css('top',-y1 + y);
 // }
 
-class DragTool extends PaintFunction{
-    constructor(contextReal,contextDraft){
-        super();
-        this.contextReal = contextReal;
-        this.contextDraft = contextDraft;
-        this.xd = -2500;
-        this.yd = -2500;
-    }
-    
-    onMouseDown(coord,event){
-        this.origX = coord[0] - this.xd;
-        this.origY = coord[1] - this.yd;
-    }
-    onDragging(coord,event){
-        this.drag(coord[0],coord[1]);
-    }
-
-    onMouseMove(){}
-    onMouseUp(coord){
-        this.xd = coord[0] - this.origX;
-        this.yd = coord[1] - this.origY;
-        $('#canvas-move').css('left',this.xd);
-        $('#canvas-move').css('top',this.yd); 
-    }
-    onMouseLeave(){}
-    onMouseEnter(){}
-
-    drag(x,y){
-        $('#canvas-real').css('left',x - this.origX);
-        $('#canvas-draft').css('left',x - this.origX);
-        $('#canvas-real').css('top',y - this.origY);
-        $('#canvas-draft').css('top',y - this.origY);
-    }
-}
