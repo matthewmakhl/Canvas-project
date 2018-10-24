@@ -64,6 +64,8 @@ for (let i in mouseFunction) {
             let mouseY = e.offsetY;
             currentFunction.onMouseUp([mouseX,mouseY],e);
         }
+        ImgS.undoList.push(canvasReal.toDataURL());
+        ImgS.redoList = [];
     });
     
     $(mouseFunction[i]).mouseleave(function(e){
@@ -347,7 +349,6 @@ $(`#header-tool-bar #WIDTHDOWN`).mouseup(function () {
     valuedetect --; //for every #drawing-up clicking, valuedetect will increase 1 
     document.getElementById("valuebox").value = valuedetect; //show value change on the input screen
 })
-)
 
 setInterval(
     function(){
