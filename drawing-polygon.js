@@ -3,17 +3,16 @@ class DrawingPolygon extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.contextDraft.strokeStyle = '#bbbbbb';
-        // this.contextDraft.fillStyle = 'white';
+        // this.contextDraft.strokeStyle = '#bbbbbb'; //william modify 
+        // this.contextDraft.fillStyle = 'white'; //william modify 
         this.contextDraft.lineJoin = 'round';
         this.contextDraft.lineWidth = 5;
-        this.contextReal.strokeStyle = '#bbbbbb';
-        this.contextReal.fillStyle = '#AA3939';
+        // this.contextReal.strokeStyle = '#bbbbbb'; //william modify
+        // this.contextReal.fillStyle = '#aaaaaa'; //william modify
         this.contextReal.lineJoin = 'round';
         this.contextReal.lineWidth = 5;
         this.polygonCoord = [];
         this.down = false;
-        // this.ifFinish = false;
         this.line = $('#lineDash').click(function(e){
                         console.log('click')
                         currentFunction.contextReal.setLineDash([5,5])
@@ -22,13 +21,13 @@ class DrawingPolygon extends PaintFunction {
                         console.log('click')
                         currentFunction.contextReal.setLineDash([])
                     })
-        this.empty = $('#emptyPoly').click(function(e){
-                        currentFunction.contextReal.fillStyle = 'white'
-                    })
-        this.fill = $('#fillPoly').click(function(e){
-                        currentFunction.contextReal.fillStyle = ''
-                    })
-        this.img;
+        // this.empty = $('#emptyPoly').click(function(e){
+        //                 currentFunction.contextReal.fillStyle = 'white'
+        //                 console.log('empty')
+        //             })
+        // this.fill = $('#fillPoly').click(function(e){
+        //                 currentFunction.contextReal.fillStyle = ''
+        //             })
         this.finish = $('#finish').click(function(e){
             //terminate mousemove
             currentFunction.down=false;
@@ -38,11 +37,6 @@ class DrawingPolygon extends PaintFunction {
                 //clear polygonCoord  
                 currentFunction.polygonCoord = [];
             }
-            // this.img = currentFunction.contextReal.getImageData(0,0,canvasReal.width,canvasReal.height);
-            // //console.log(this.img.data)
-            // for (var x=0; x<this.img.data.length;x+=4){
-            // }
-
         })
     }
 
@@ -60,7 +54,10 @@ class DrawingPolygon extends PaintFunction {
             this.contextReal.stroke();
             }
         }
-        // this.finish();
+        this.contextReal.fillStyle = document.getElementById("color").value; //william modify
+        this.contextDraft.fillStyle = document.getElementById("color").value; // william modify
+        this.contextReal.strokeStyle = document.getElementById("color").value; //william modify
+        this.contextDraft.strokeStyle = document.getElementById("color").value; // william modify
 
     }
     onDragging(coord,event){
@@ -88,21 +85,6 @@ class DrawingPolygon extends PaintFunction {
 
     onMouseLeave(){};
     onMouseEnter(){};
-
-    // finish(){
-    //     if(currentFunction.ifFinish == false){
-    //         $('#finish').click(function(e){
-    //             currentFunction.down=false;
-    //             if(currentFunction.polygonCoord.length > 0){
-    //                 currentFunction.finishPolygon(currentFunction.contextReal,currentFunction.polygonCoord);
-    //                 currentFunction.contextDraft.clearRect(0,0,canvasReal.width,canvasReal.height);
-    //                 currentFunction.polygonCoord = [];
-    //             } else return currentFunction.ifFinish = true;
-    //         })
-
-
-    //     }
-    // }
 
     finishPolygon(ctx, array){
         ctx.moveTo(array[0].upX,array[0].upY)

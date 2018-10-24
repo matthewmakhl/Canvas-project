@@ -1,42 +1,34 @@
-
-
 class DrawingPeanut extends PaintFunction {
     constructor(contextReal, contextDraft){
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.source1 = document.getElementById('source1');
-        this.source2 = document.getElementById('source2');
-
-        console.log('insidePeanut')
-        console.log(this.source)
-        
+        this.nutImage = new Image();
     }
         
-    onMouseDown(coord){
-        console.log('down');
-        this.contextReal.drawImage(this.source2,coord[0],coord[1], 80, 50)
-        this.contextReal.drawImage(this.source1, 50, 50,20,20,coord[0] -20,coord[1]+30, 30, 30)
-
-
+    onMouseDown(coord){}
+    onDragging(coord,e){
+        // if (this.getRandomInt(0,10) > 7) {
+        // }
+        this.drawPeanut(e);
     }
-    onDragging(coord){
-
-
-
-    }
-
-    onMouseMove(coord){
-
-    }
+    onMouseMove(coord){}
     onMouseUp(){}
     onMouseLeave(){}
     onMouseEnter(){}
-
-    draw(x,y){
-        this.context.lineTo(x,y);
-        this.context.moveTo(x,y);
-        this.context.closePath();
-        this.context.stroke();    
+    
+    getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    drawPeanut(e) {
+        this.nutImage.src = `./images/nut${this.getRandomInt(1, 9)}.png`;
+        contextReal.save();
+        contextReal.translate(e.offsetX, e.offsetY);
+        contextReal.beginPath();
+        contextReal.rotate(Math.PI / 180 * this.getRandomInt(0, 360));
+        contextReal.scale(this.getRandomInt(2, 3) / 5, this.getRandomInt(2, 3) / 5);
+        contextReal.drawImage(this.nutImage,0,0);
+        contextReal.restore();
     }
 }
