@@ -3,12 +3,12 @@ class DrawingPolygon extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.contextDraft.strokeStyle = '#bbbbbb';
-        // this.contextDraft.fillStyle = 'white';
+        // this.contextDraft.strokeStyle = '#bbbbbb'; //william modify 
+        // this.contextDraft.fillStyle = 'white'; //william modify 
         this.contextDraft.lineJoin = 'round';
         this.contextDraft.lineWidth = 5;
-        this.contextReal.strokeStyle = '#bbbbbb';
-        this.contextReal.fillStyle = '#aaaaaa';
+        // this.contextReal.strokeStyle = '#bbbbbb'; //william modify
+        // this.contextReal.fillStyle = '#aaaaaa'; //william modify
         this.contextReal.lineJoin = 'round';
         this.contextReal.lineWidth = 5;
         this.polygonCoord = [];
@@ -40,6 +40,10 @@ class DrawingPolygon extends PaintFunction {
             }
         }
         this.finish();
+        this.contextReal.fillStyle = document.getElementById("color").value; //william modify
+        this.contextDraft.fillStyle = document.getElementById("color").value; // william modify
+        this.contextReal.strokeStyle = document.getElementById("color").value; //william modify
+        this.contextDraft.strokeStyle = document.getElementById("color").value; // william modify
 
     }
     onDragging(coord,event){
