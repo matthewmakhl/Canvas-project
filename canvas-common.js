@@ -21,7 +21,10 @@ let selected = {
     UNDO: 0, 
     REDO: 0, 
     WIDTHUP: 0, 
-    WIDTHDOWN: 0
+    WIDTHDOWN: 0,
+    //kevin
+    BUCKET: 0
+
 }
 let mouseFunction = ['#canvas-draft','#canvas-move'];
 let dragLocation = [-1000,-1500];
@@ -233,6 +236,25 @@ $(`#tool-bar #PEANUT`).click(function(){
         selected.main=0;
         selected.PEANUT=0;
         $(`#PEANUT`).removeClass('active');
+        currentFunction = {};
+    };
+})
+//kevin
+$(`#tool-bar #BUCKET`).click(function(){
+    if (selected.BUCKET==0){
+        unselectOther('BUCKET');
+        selected.main=1;
+        selected.BUCKET=1;
+        $(`#BUCKET`).addClass('active');
+
+        currentFunction = new PaintBucket(contextReal,contextDraft);
+
+    }else{
+        selected.main=0;
+        selected.BUCKET=0;
+        console.log('unselect')
+        $(`#BUCKET`).removeClass('active');
+
         currentFunction = {};
     };
 })
