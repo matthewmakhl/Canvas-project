@@ -21,10 +21,10 @@
             <i class="fas fa-paint-brush"></i>
         </div>
         <div>
-            
+            <input type="color" value="#fff000" id="color">
         </div>
         <div>
-
+            <input type="text" name="valuebox" value="5" id="valuebox">
         </div>
     </header>
     <section id="tool-bar">
@@ -43,6 +43,15 @@
         <div id="RECTANGLE" class="press-btn">
             <i class="far fa-square"></i>
         </div>
+        <div id="SELECTION" class="press-btn" title="Select">
+            <i class="material-icons">select_all</i>
+        </div>
+        <div id="CLEAR" class="press-btn" title="Clear all">
+            <i class="material-icons">clear</i>
+        </div>
+        <div id="TYPE" class="press-btn" title="Text">
+            <i class="material-icons">text_format</i>
+        </div>
         <div id="POLYGON" class="press-btn">
             <i class="fas fa-draw-polygon"></i>
         </div>
@@ -55,7 +64,29 @@
         <div style="display: none;">
             <img id="source2" src="./laugh.png" >
         </div>
+        <div id="ZOOMIN" class="press-btn" title="Zoomin">
+            <i class="fa fa-plus"></i> <!-- zoom in -->
+        </div>
+        <div id="ZOOMOUT" class="press-btn" title="Zoomout">
+            <i class="fa fa-minus"></i> <!-- zoom out -->
+        </div>
+        <div id="NULL" class="press-btn" title="Null">
+            <i class="fa fa-zero"></i> <!-- null -->
+        </div>
+        <div id="UNDO" class="press-btn" title="Undo">
+            <i class="fa fa-undo"></i> <!-- undo -->
+        </div>
+        <div id="REDO" class="press-btn" title="Redo">
+            <i class="fa fa-redo"></i> <!-- redo -->
+        </div>
+        <div id="WIDTHUP" class="press-btn" title="Widthup">
+            <i class="fa fa-arrow-up"></i> <!-- redo -->
+        </div>
+        <div id="WIDTHDOWN" class="press-btn" title="Widthdown">
+            <i class="fa fa-arrow-down"></i> <!-- redo -->
+        </div>
     </section>
+    
     <div id="display" style="display: none">
         <div id="finish" class="press-btn" style=" background: orange ">
             <i class="far fa-check-circle"></i>
@@ -73,14 +104,14 @@
             <i class="fas fa-star-half"></i>
         </div>
     </div>
-    
+  
     <div class="frame">
-        <canvas id="canvas-move" width="5000" height="5000"></canvas>
-        <canvas id="canvas-real" width="5000" height="5000"></canvas>
-        <canvas id="canvas-draft" width="5000" height="5000"></canvas>
+        <canvas id="canvas-move" width="3000" height="3000"></canvas>
+        <canvas id="canvas-real" width="3000" height="3000"></canvas>
+        <canvas id="canvas-draft" width="3000" height="3000"></canvas>
     </div>
 
-    <div id="viewpoint"></div>
+    <!-- <div id="viewpoint"></div> -->
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -93,5 +124,12 @@
     <script src="./drawing-polygon.js"></script>
     <!-- <script src="./peanut.js"></script> -->
 
+    <script src="./peanut.js"></script>
+    <script src="./selection.js"></script>
+    <script src="./text.js"></script>
+    <script src="./drawing-zooming.js"></script>
+    <script src="./drawing-undo.js"></script>
+    <script src="./drawing-redo.js"></script>
 </body>
+
 </html>

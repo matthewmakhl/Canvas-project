@@ -13,6 +13,8 @@ class Selection extends PaintFunction{
         this.origY2;
         this.endX;
         this.endY;
+        this.testImage = new Image();
+        this.firstMove = 0;
     }
     
     onMouseDown(coord,event){
@@ -25,12 +27,19 @@ class Selection extends PaintFunction{
             (coord[1] <= this.endY) &&
             (coord[1] >= this.origY)
             ) {
+            if (this.firstMove==0){
+                this.contextReal.clearRect(this.origX,this.origY,this.endX- this.origX,this.endY - this.origY);
+                this.firstMove = 1;
+            }
+
             this.origX2 = coord[0];
             this.origY2 = coord[1];
         } else {
-            this.selectionBox = 2;
+            this.selectionBox = 0;
             this.drawCapture(this.contextReal,this.origX,this.origY)
-            contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);            
+            contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
+            this.origX = coord[0];
+            this.origY = coord[1];
         }
     }
     onDragging(coord,event){
@@ -58,21 +67,20 @@ class Selection extends PaintFunction{
             (coord[0] <= this.endX) &&
             (coord[0] >= this.origX) &&
             (coord[1] <= this.endY) &&
-            (coord[1] >= this.origY)
-                ) {
-            $('#canvas-real').css('cursor','all-scroll');
-            console.log(coord);
+            (coord[1] >= this.origY)) {
+            $('#canvas-draft').css('cursor','all-scroll');
+            $('body').css('cursor', 'all-scroll');
         } else {
-            $('#canvas-real').css('cursor','default');
+            $('#canvas-draft').css('cursor','default');
+            $('body').css('cursor', 'default');
         }
     }
     
     onMouseUp(coord){
         if (this.selectionBox == 0){
             coord = this.adjustxy(coord[0],coord[1]);
-            this.captureSelection(coord[0],coord[1]);
             this.drawSelectionBox(this.origX,this.origY,coord[0],coord[1]);
-            this.contextReal.clearRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY);
+            this.captureSelection(coord[0],coord[1]);
             this.selectionBox = 1;
             this.endX = coord[0];
             this.endY = coord[1];
@@ -141,18 +149,12 @@ class Selection extends PaintFunction{
             this.capSelection_canvas.height//Place Height
         );
 
-        this.capSelection_data = this.capSelection_canvas.toDataURL();
-        this.drawCapture(this.contextDraft,this.origX,this.origY);
+        this.testImage.src = this.capSelection_canvas.toDataURL();
+        this.firstMove = 0;
     }
     
     drawCapture(ctx,x,y){
-        let img = document.createElement('img');
-        img.setAttribute('src', this.capSelection_data);
-        let xx = x;
-        let yy = y;
-        img.onload = function(){
-            ctx.drawImage(img, xx, yy);
-        }
+        ctx.drawImage(this.testImage, x, y);
     }
 
     adjustxy(x,y){

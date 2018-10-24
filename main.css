@@ -6,7 +6,7 @@ body {
     height: 10vh;
     width: 10vw;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: center;
 }
 
@@ -35,6 +35,7 @@ header {
     background-color: orange;
     position: fixed;
     z-index: 10;
+    overflow: auto;
 }
 
 #display {
@@ -92,17 +93,19 @@ div.frame {
 canvas {
     background-color: transparent;
     position: absolute;
-    top: -2500px;
-    left: -2500px;
+    left: -1000px;
+    top: -1500px;
 }
 
 #canvas-real, #canvas-draft {
     border: solid;
 }
 
-div#viewpoint {
+
+/* div#viewpoint {
     position: absolute;
     top: 2500px;
     left: 3000px;
-}
+} */
+
 
