@@ -48,8 +48,8 @@ class DrawingCircle extends PaintFunction{
     }
     onPressUp(coord,e){
         var keycode = parseInt(e.which);
-        if ((keycode == 16)) {
-            this.shifting = 0;
+        this.shifting = 0;
+        if ((keycode == 16)&&(dragging == 1)) {
             this.drawEllipse(this.contextDraft,this.medX,this.medY);
         }
     }
