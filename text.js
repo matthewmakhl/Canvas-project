@@ -6,6 +6,8 @@ class TypeText extends PaintFunction{
         this.typedText ='';
         this.typing = 0;
         this.secondCounter = 0;
+        this.contextReal.fillStyle = document.getElementById("color").value; //william modify
+        this.contextDraft.fillStyle = document.getElementById("color").value; // william modify
     }
     
     onMouseDown(coord,event){

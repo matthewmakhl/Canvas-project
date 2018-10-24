@@ -1,5 +1,4 @@
-var zoomfactor = 2;
-// var scale = 1.0;
+var scale = 1.0;
 // var scaleMultiplier = 0.9;
 
 class Zooming extends PaintFunction {
@@ -7,7 +6,7 @@ class Zooming extends PaintFunction {
         super();
         this.zoom = zoom;
         this.contextReal = contextReal;
-        this.scale = 1.0
+        this.scale = scale
         this.scaleMultiplier = 0.9;
     }
     
@@ -15,15 +14,17 @@ class Zooming extends PaintFunction {
         if (this.zoom == 'zoomin') {
             this.scale /= this.scaleMultiplier;
             this.zoomingdraw(this.scale);
+            this.scale = currentFunction.scale;
         } else if (this.zoom == 'zoomout') {
             this.scale *= this.scaleMultiplier;
             this.zoomingdraw(this.scale);
-        } else if (this.zoom == 'null') {
-            this.scale = 1;
-            this.zoomingdraw(this.scale);
-            console.log(this.scale);
+            this.scale = currentFunction.scale;
+        // } else if (this.zoom == 'null') {
+        //     this.scale = 1 / this.scale;
+        //     this.zoomingdraw(this.scale);
+        //     console.log(this.scale);
+        // }
         }
-
     }
 
     onDragging() {}
@@ -34,9 +35,10 @@ class Zooming extends PaintFunction {
     onMouseEnter() {}
 
     zoomingdraw(scale) {
+        console.log(this.scale);
+        console.log(currentFunction.scale);
         var img = document.createElement('img');
         img.setAttribute('src', ImgS.undoList[ImgS.undoList.length - 1]);//store the last img after elinmating undolist array
-        console.log(ImgS.undoList);
         img.onload = function () {
             contextReal.clearRect(0, 0, canvasReal.width, canvasReal.height);
             contextReal.save();
@@ -45,7 +47,6 @@ class Zooming extends PaintFunction {
             contextReal.drawImage(img, 0, 0); // draw the newest last img on the canvas
             contextReal.restore();
         }
-        // img.onload();// >>>>>>>>>>>>>>>>>>>>>>> *** why when I add the .onload() method, the drawing will not be refreshed, meant normal setting now
     }
 }
 

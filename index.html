@@ -20,12 +20,30 @@
         <div id="icon">
             <i class="fas fa-paint-brush"></i>
         </div>
-        <div>
-            <input type="color" value="#fff000" id="color">
-        </div>
-        <div>
-            <input type="text" name="valuebox" value="5" id="valuebox">
-        </div>
+         <section class="header-section">
+                <input type="color" text="hi" value="#fff000" id="color" title="Color Selection">
+                <section id="header-tool-bar">
+                <div id="WIDTHUP" class="press-btn" title="Width Up">
+                    <i class="fa fa-arrow-up" id="arrowup"></i> 
+                </div>
+                <div id="WIDTHDOWN" class="press-btn" title="Width Down">
+                    <i class="fa fa-arrow-down" id="arrowdown"></i> 
+                </div>
+                </section>
+                <input type="text" name="valuebox" value="5" id="valuebox" title="Width Input" >
+                <div id="UNDO" class="press-btn header-bigicon" title="Undo">
+                    <i class="fa fa-undo" id="undo"></i> <!-- undo -->
+                </div>
+                <div id="REDO" class="press-btn header-bigicon" title="Redo">
+                    <i class="fa fa-redo" id="redo"></i> <!-- redo -->
+                </div>
+                <div id="ZOOMIN" class="press-btn header-bigicon" title="Zoom In">
+                    <i class="fa fa-search-plus" id="zoomin"></i> 
+                </div>
+                <div id="ZOOMOUT" class="press-btn header-bigicon" title="Zoom Out">
+                    <i class="fa fa-search-minus" id="zoomout"></i>
+                </div>
+         </section>
     </header>
     <section id="tool-bar">
         <div id="CIRCLE" class="press-btn">
@@ -63,27 +81,6 @@
         </div>
         <div style="display: none;">
             <img id="source2" src="./laugh.png" >
-        </div>
-        <div id="ZOOMIN" class="press-btn" title="Zoomin">
-            <i class="fa fa-plus"></i> <!-- zoom in -->
-        </div>
-        <div id="ZOOMOUT" class="press-btn" title="Zoomout">
-            <i class="fa fa-minus"></i> <!-- zoom out -->
-        </div>
-        <div id="NULL" class="press-btn" title="Null">
-            <i class="fa fa-zero"></i> <!-- null -->
-        </div>
-        <div id="UNDO" class="press-btn" title="Undo">
-            <i class="fa fa-undo"></i> <!-- undo -->
-        </div>
-        <div id="REDO" class="press-btn" title="Redo">
-            <i class="fa fa-redo"></i> <!-- redo -->
-        </div>
-        <div id="WIDTHUP" class="press-btn" title="Widthup">
-            <i class="fa fa-arrow-up"></i> <!-- redo -->
-        </div>
-        <div id="WIDTHDOWN" class="press-btn" title="Widthdown">
-            <i class="fa fa-arrow-down"></i> <!-- redo -->
         </div>
     </section>
     

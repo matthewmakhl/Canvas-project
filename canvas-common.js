@@ -262,7 +262,7 @@ $(`#tool-bar #TYPE`).click(function(){
     };
 })
 
-$(`#tool-bar #ZOOMIN`).click(function () {
+$(`#ZOOMIN`).click(function () {
     if (selected.ZOOMIN == 0) {
         unselectOther('ZOOMIN');
         selected.main = 1;
@@ -270,7 +270,6 @@ $(`#tool-bar #ZOOMIN`).click(function () {
         $(`#ZOOMIN`).addClass('active');
         $('.frame').css({ "cursor": "zoom-in" })
         currentFunction = new Zooming('zoomin',contextReal);
-        console.log(selected.ZOOMIN );
     } else {
         selected.main = 0;
         selected.ZOOMIN = 0;
@@ -280,7 +279,7 @@ $(`#tool-bar #ZOOMIN`).click(function () {
     };
 })
 
-$(`#tool-bar #ZOOMOUT`).click(function () {
+$(`#ZOOMOUT`).click(function () {
     if (selected.ZOOMOUT == 0) {
         unselectOther('ZOOMOUT');
         selected.main = 1;
@@ -288,7 +287,6 @@ $(`#tool-bar #ZOOMOUT`).click(function () {
         $(`#ZOOMOUT`).addClass('active');
         $('.frame').css({ "cursor": "zoom-out" })
         currentFunction = new Zooming('zoomout',contextReal);
-        console.log(selected.ZOOMIN );
     } else {
         selected.main = 0;
         selected.ZOOMOUT = 0;
@@ -315,47 +313,46 @@ $(`#tool-bar #NULL`).click(function () {
     };
 })
 
-
-$(`#tool-bar #UNDO`).mousedown(function () {
+$(`#UNDO`).mousedown(function () {
     unselectOther('UNDO');
     $(`#UNDO`).addClass('active');
 })
 
-$(`#tool-bar #UNDO`).mouseup(function () {
+$(`#UNDO`).mouseup(function () {
     $(`#UNDO`).removeClass('active');
     currentFunction = new DrawingUndo(contextReal); 
     currentFunction.undo();
     console.log(ImgS);
 })
 
-$(`#tool-bar #REDO`).mousedown(function () {
+$(`#REDO`).mousedown(function () {
     unselectOther('REDO');
     $(`#REDO`).addClass('active');
 })
 
-$(`#tool-bar #REDO`).mouseup(function () {
+$(`#REDO`).mouseup(function () {
     $(`#REDO`).removeClass('active');
     currentFunction = new DrawingRedo(contextReal);
     currentFunction.redo();
 })
 
-$(`#tool-bar #WIDTHUP`).mousedown(function () {
+$(`#header-tool-bar #WIDTHUP`).mousedown(function () {
     unselectOther('WIDTHUP');
     $(`#WIDTHUP`).addClass('active');
 })
 
-$(`#tool-bar #WIDTHUP`).mouseup(function () {
+$(`#header-tool-bar #WIDTHUP`).mouseup(function () {
     $(`#WIDTHUP`).removeClass('active');
     valuedetect ++; //for every #drawing-up clicking, valuedetect will increase 1 
     document.getElementById("valuebox").value = valuedetect; //show value change on the input screen
 })
 
-$(`#tool-bar #WIDTHDOWN`).mousedown(function () {
+$(`#header-tool-bar #WIDTHDOWN`).mousedown(function () {
     unselectOther('WIDTHDOWN');
     $(`#WIDTHDOWN`).addClass('active');
 })
 
-$(`#tool-bar #WIDTHDOWN`).mouseup(function () {
+$(`#header-tool-bar #WIDTHDOWN`).mouseup(function () {
     $(`#WIDTHDOWN`).removeClass('active');
     valuedetect --; //for every #drawing-up clicking, valuedetect will increase 1 
     document.getElementById("valuebox").value = valuedetect; //show value change on the input screen
@@ -379,6 +376,7 @@ function unselectOther(id){
     for (let i in selected) {
         if ((i != 'main')&&(selected[i]!=0)){
             $(`#tool-bar #${i}`).trigger('click');
+            $(`.header-section #${i}`).trigger('click');
         }
         if (i == 'DRAG') {
             $('#canvas-move').css('z-index','-1');
