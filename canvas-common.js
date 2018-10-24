@@ -296,23 +296,6 @@ $(`#ZOOMOUT`).click(function () {
     };
 })
 
-$(`#tool-bar #NULL`).click(function () {
-    if (selected.NULL == 0) {
-        unselectOther('NULL');
-        selected.main = 1;
-        selected.NULL = 1;
-        $(`#NULL`).addClass('active');
-        $('.frame').css({ "cursor": "default" })
-        currentFunction = new Zooming('null',contextReal);
-    } else {
-        selected.main = 0;
-        selected.NULL = 0;
-        $(`#NULL`).removeClass('active');
-        $('.frame').css({ "cursor": "default" })
-        currentFunction = {};
-    };
-})
-
 $(`#UNDO`).mousedown(function () {
     unselectOther('UNDO');
     $(`#UNDO`).addClass('active');
