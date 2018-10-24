@@ -12,6 +12,7 @@ let selected = {
     DRAG: 0,
     CIRCLE: 0,
     SELECTION: 0,
+    PEANUT: 0,
     POLYGON: 0,
     TYPE: 0,
     ZOOMIN: 0, 
@@ -214,6 +215,21 @@ $(`#tool-bar #SELECTION`).click(function(){
         currentFunction.drawCapture(currentFunction.contextReal,currentFunction.origX,currentFunction.origY);
         currentFunction = {};
         contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
+    };
+})
+
+$(`#tool-bar #PEANUT`).click(function(){
+    if (selected.PEANUT==0){
+        unselectOther('PEANUT');
+        selected.main=1;
+        selected.PEANUT=1;
+        $(`#PEANUT`).addClass('active');
+        currentFunction = new DrawingPeanut(contextReal,contextDraft);
+    }else{
+        selected.main=0;
+        selected.PEANUT=0;
+        $(`#PEANUT`).removeClass('active');
+        currentFunction = {};
     };
 })
 
