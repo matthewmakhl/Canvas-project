@@ -12,6 +12,7 @@ let selected = {
     DRAG: 0,
     CIRCLE: 0,
     SELECTION: 0,
+    PEANUT: 0,
     POLYGON: 0,
     TYPE: 0,
     ZOOMIN: 0, 
@@ -22,8 +23,8 @@ let selected = {
     WIDTHUP: 0, 
     WIDTHDOWN: 0
 }
-let mouseFunction = ['#canvas-draft','#canvas-move']
-let dragLocation = [-1000,-1500]
+let mouseFunction = ['#canvas-draft','#canvas-move'];
+let dragLocation = [-1000,-1500];
 var valuedetect = document.getElementById("valuebox").value;
 
 let ImgS = {
@@ -34,7 +35,6 @@ $(function () {
     ImgS.undoList.push(canvasReal.toDataURL());
     
 }); // for every time of page ready, the imagine will be stored into the undolist first
-
 
 for (let i in mouseFunction) {
     $(mouseFunction[i]).mousedown(function(e){
@@ -64,8 +64,6 @@ for (let i in mouseFunction) {
             let mouseY = e.offsetY;
             currentFunction.onMouseUp([mouseX,mouseY],e);
         }
-        ImgS.undoList.push(canvasReal.toDataURL()); //storing img for every mouseup ((william))
-        ImgS.redoList = []; // redolist will be blank ((william))
     });
     
     $(mouseFunction[i]).mouseleave(function(e){
@@ -89,7 +87,9 @@ for (let i in mouseFunction) {
 
 $(document).keypress(function(e){
     if (selected.main&&selected.TYPE) {
-        currentFunction.onType(e);
+        let mouseX = e.offsetX;
+        let mouseY = e.offsetY;
+        currentFunction.onType([mouseX,mouseY],e);
     }
 });
 
@@ -193,20 +193,12 @@ $(`#tool-bar #POLYGON`).click(function(){
         selected.POLYGON=1;
         $(`#POLYGON`).addClass('active');
         currentFunction = new DrawingPolygon(contextReal,contextDraft);
-
-    }else{
+     }else{
         selected.main=0;
         selected.POLYGON=0;
         $(`#POLYGON`).removeClass('active');
         currentFunction = {};
     };
-})
-
-$('#PEANUT').click(function(e){
-    selected.main=1;
-    console.log('peanut');
-    console.log(contextReal,contextDraft)
-    currentFunction= new DrawingPeanut(contextReal,contextDraft);
 })
 
 $(`#tool-bar #SELECTION`).click(function(){
@@ -223,6 +215,21 @@ $(`#tool-bar #SELECTION`).click(function(){
         currentFunction.drawCapture(currentFunction.contextReal,currentFunction.origX,currentFunction.origY);
         currentFunction = {};
         contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
+    };
+})
+
+$(`#tool-bar #PEANUT`).click(function(){
+    if (selected.PEANUT==0){
+        unselectOther('PEANUT');
+        selected.main=1;
+        selected.PEANUT=1;
+        $(`#PEANUT`).addClass('active');
+        currentFunction = new DrawingPeanut(contextReal,contextDraft);
+    }else{
+        selected.main=0;
+        selected.PEANUT=0;
+        $(`#PEANUT`).removeClass('active');
+        currentFunction = {};
     };
 })
 
@@ -296,24 +303,7 @@ $(`#ZOOMOUT`).click(function () {
     };
 })
 
-$(`#tool-bar #NULL`).click(function () {
-    if (selected.NULL == 0) {
-        unselectOther('NULL');
-        selected.main = 1;
-        selected.NULL = 1;
-        $(`#NULL`).addClass('active');
-        $('.frame').css({ "cursor": "default" })
-        currentFunction = new Zooming('null',contextReal);
-    } else {
-        selected.main = 0;
-        selected.NULL = 0;
-        $(`#NULL`).removeClass('active');
-        $('.frame').css({ "cursor": "default" })
-        currentFunction = {};
-    };
-})
-
-$(`#UNDO`).mousedown(function () {
+ $(`#UNDO`).mousedown(function () {
     unselectOther('UNDO');
     $(`#UNDO`).addClass('active');
 })
@@ -325,7 +315,7 @@ $(`#UNDO`).mouseup(function () {
     console.log(ImgS);
 })
 
-$(`#REDO`).mousedown(function () {
+ $(`#REDO`).mousedown(function () {
     unselectOther('REDO');
     $(`#REDO`).addClass('active');
 })
@@ -336,7 +326,7 @@ $(`#REDO`).mouseup(function () {
     currentFunction.redo();
 })
 
-$(`#header-tool-bar #WIDTHUP`).mousedown(function () {
+ $(`#header-tool-bar #WIDTHUP`).mousedown(function () {
     unselectOther('WIDTHUP');
     $(`#WIDTHUP`).addClass('active');
 })
@@ -357,6 +347,7 @@ $(`#header-tool-bar #WIDTHDOWN`).mouseup(function () {
     valuedetect --; //for every #drawing-up clicking, valuedetect will increase 1 
     document.getElementById("valuebox").value = valuedetect; //show value change on the input screen
 })
+)
 
 setInterval(
     function(){
