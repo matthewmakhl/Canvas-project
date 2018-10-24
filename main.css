@@ -148,7 +148,7 @@ div.frame {
 }
 
 canvas {
-    background-color: transparent;
+    background-color: rgba(170, 255, 255, 255);
     position: absolute;
     left: -1000px;
     top: -1500px;
@@ -157,5 +157,3 @@ canvas {
 #canvas-real, #canvas-draft {
     border: solid;
 }
-
-
