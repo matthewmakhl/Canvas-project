@@ -96,6 +96,22 @@ $(document).keypress(function(e){
     }
 });
 
+$(document).keydown(function(e){
+    if (selected.main) {
+        let mouseX = e.offsetX;
+        let mouseY = e.offsetY;
+        currentFunction.onPressDown([mouseX,mouseY],e);
+    }
+});
+
+$(document).keyup(function(e){
+    if (selected.main) {
+        let mouseX = e.offsetX;
+        let mouseY = e.offsetY;
+        currentFunction.onPressUp([mouseX,mouseY],e);
+    }
+});
+
 class PaintFunction{
     constructor(){}
     onMouseDown(){}
@@ -104,6 +120,9 @@ class PaintFunction{
     onMouseUp(){}
     onMouseLeave(){}
     onMouseEnter(){}
+    onType(){}
+    onPressDown(){}
+    onPressUp(){}
 } 
 
 // ==================================
