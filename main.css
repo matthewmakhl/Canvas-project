@@ -55,9 +55,10 @@ body {
     display:flex;
     align-content: center;
     padding: 10px;
+    cursor: pointer;
 }
 
-#undo,#redo,#zoomin,#zoomout{
+.header-section i{
     font-size: 15px;
 }
 
@@ -156,4 +157,6 @@ canvas {
     border: solid;
 }
 
-
+i.fas.fa-square{
+    display: none;
+}

@@ -8,8 +8,6 @@ class DrawingPeanut extends PaintFunction {
         
     onMouseDown(coord){}
     onDragging(coord,e){
-        // if (this.getRandomInt(0,10) > 7) {
-        // }
         this.drawPeanut(e);
     }
     onMouseMove(coord){}

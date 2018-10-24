@@ -91,7 +91,15 @@ class DrawingPolygon extends PaintFunction {
         for (var i=1;i<array.length;i++){
             ctx.lineTo(array[i].upX,array[i].upY);
         }
-        ctx.fill();
+        if (selected.FILL==0){
+            ctx.beginPath();
+            ctx.moveTo(array[array.length-1].upX,array[array.length-1].upY);
+            ctx.lineTo(array[0].upX,array[0].upY);
+            ctx.closePath();
+            ctx.stroke();  
+        } else {
+            ctx.fill();
+        }
     }
     
  

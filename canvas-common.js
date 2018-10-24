@@ -21,7 +21,8 @@ let selected = {
     UNDO: 0, 
     REDO: 0, 
     WIDTHUP: 0, 
-    WIDTHDOWN: 0
+    WIDTHDOWN: 0,
+    FILL: 0,
 }
 let mouseFunction = ['#canvas-draft','#canvas-move'];
 let dragLocation = [-1000,-1500];
@@ -169,7 +170,7 @@ $(`#tool-bar #CIRCLE`).click(function(){
     };
 })
 
-$(`#tool-bar #DRAG`).click(function(){
+$(`.header-section #DRAG`).click(function(){
     if (selected.DRAG==0){
         unselectOther('DRAG');
         selected.main=1;
@@ -307,6 +308,20 @@ $(`#ZOOMOUT`).click(function () {
     };
 })
 
+$(`#FILL`).click(function () {
+    if (selected.FILL == 0) {
+        selected.FILL = 1;
+        $(`#FILL`).addClass('active');
+        $('.header-section i.fas.fa-square').css("display", "inline")
+        $('.header-section i.far.fa-square').css("display", "none")
+    } else {
+        selected.FILL = 0;
+        $(`#FILL`).removeClass('active');
+        $('.header-section i.far.fa-square').css("display", "inline")
+        $('.header-section i.fas.fa-square').css("display", "none")
+    };
+})
+
  $(`#UNDO`).mousedown(function () {
     unselectOther('UNDO');
     $(`#UNDO`).addClass('active');
@@ -368,7 +383,7 @@ setInterval(
 
 function unselectOther(id){
     for (let i in selected) {
-        if ((i != 'main')&&(selected[i]!=0)){
+        if ((i != 'main')&&(selected[i]!=0)&&(i != 'FILL')){
             $(`#tool-bar #${i}`).trigger('click');
             $(`.header-section #${i}`).trigger('click');
         }
