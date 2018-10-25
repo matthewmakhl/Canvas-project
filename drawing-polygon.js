@@ -13,16 +13,17 @@ class DrawingPolygon extends PaintFunction {
         this.contextReal.lineWidth = 5;
         this.polygonCoord = [];
         this.down = false;
-        this.ifFinish = false;
-        this.isdisplay = {finish:$('#finish').css('display','block'),lineDash:$('#lineDash').css('display','block'),lineSolid:$('#lineSolid').css('display','block'),isdisplay:$('#display').css('display','block')}
-        this.line = $('#lineDash').click(function(e){
-                        console.log('click')
-                        currentFunction.contextReal.setLineDash([5,5])
-                    })
-        this.dash = $('#lineSolid').click(function(e){
-                        console.log('click')
-                        currentFunction.contextReal.setLineDash([])
-                    })
+
+        this.finish = $('#finish').click(function(e){
+            //terminate mousemove
+            currentFunction.down=false;
+            if(currentFunction.polygonCoord.length > 0){
+                currentFunction.finishPolygon(currentFunction.contextReal,currentFunction.polygonCoord);
+                currentFunction.contextDraft.clearRect(0,0,canvasReal.width,canvasReal.height);
+                //clear polygonCoord  
+                currentFunction.polygonCoord = [];
+            }
+        })
     }
 
     onMouseDown(coord,event){
@@ -31,6 +32,7 @@ class DrawingPolygon extends PaintFunction {
         this.origY = coord[1];
         this.polygonCoord.push({upX: this.origX,upY:this.origY})
         this.down = true;
+        this.isDash(this.contextReal);
         if(this.polygonCoord.length > 1){
         for (var x=1; x<this.polygonCoord.length;x++){
             this.contextReal.beginPath();
@@ -39,7 +41,6 @@ class DrawingPolygon extends PaintFunction {
             this.contextReal.stroke();
             }
         }
-        this.finish();
         this.contextReal.fillStyle = document.getElementById("color").value; //william modify
         this.contextDraft.fillStyle = document.getElementById("color").value; // william modify
         this.contextReal.strokeStyle = document.getElementById("color").value; //william modify
@@ -62,7 +63,6 @@ class DrawingPolygon extends PaintFunction {
                 for (var x=0;x<this.polygonCoord.length;x++){
                     this.contextDraft.lineTo(this.polygonCoord[x].upX,this.polygonCoord[x].upY)                
                 }
-                // this.contextDraft.fill();
             }
     };
 
@@ -71,32 +71,33 @@ class DrawingPolygon extends PaintFunction {
 
     onMouseLeave(){};
     onMouseEnter(){};
-
-    finish(){
-        if(currentFunction.ifFinish == false){
-
-
-            $('#finish').click(function(e){
-                currentFunction.down=false;
-                if(currentFunction.polygonCoord.length > 0){
-                    currentFunction.finishPolygon(currentFunction.contextReal,currentFunction.polygonCoord);
-                    currentFunction.contextDraft.clearRect(0,0,canvasReal.width,canvasReal.height);
-                    currentFunction.polygonCoord = [];
-                    // console.log(currentFunction.polygonCoord)
-                } else return currentFunction.ifFinish = true;
-            })
-
-
+    //set dash line
+    isDash(ctx){
+        if (selected.DASH==1){
+            ctx.setLineDash([5,5])
+        } else {
+            ctx.setLineDash([])
         }
     }
-
     finishPolygon(ctx, array){
         ctx.moveTo(array[0].upX,array[0].upY)
         for (var i=1;i<array.length;i++){
             ctx.lineTo(array[i].upX,array[i].upY);
         }
-        ctx.fill();
+        
+
+
+        if (selected.FILL==0){
+            ctx.beginPath();
+            ctx.moveTo(array[array.length-1].upX,array[array.length-1].upY);
+            ctx.lineTo(array[0].upX,array[0].upY);
+            ctx.closePath();
+            ctx.stroke();  
+        } else {
+            ctx.fill();
+        }
     }
     
+ 
 
 }
