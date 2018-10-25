@@ -4,25 +4,23 @@ class PaintBucket extends PaintFunction {
         this.context = contextReal;
         this.pixelStack = [];
         this.imgData;
-        this.curColor = {
-            r: 191,
-            g: 63,
-            b: 63
-        };
+        this.curColor = {};
+        this.startPOS;
+        this.startR;
+        this.startG;
+        this.startG;
     }
 
     onMouseDown(coord) {
-
+        this.HEXtoRGB()
         this.imgData = this.context.getImageData(0, 0, canvasReal.width, canvasReal.height)
-        // console.log(this.imgData.data)
+        this.startPOS = (coord[1] * canvasReal.width + coord[0]) * 4;
+        this.startR = this.imgData.data[this.startPOS];
+        this.startG = this.imgData.data[this.startPOS + 1];
+        this.startB = this.imgData.data[this.startPOS + 2];
         this.floodFill(coord)
+        //put filled image
         this.context.putImageData(this.imgData, 0, 0);
-
-        // console.log(this.imgData.data)
-        // console.log(this.context)
-
-
-
     }
     onDragging(coord) {}
 
@@ -30,7 +28,7 @@ class PaintBucket extends PaintFunction {
     onMouseUp() {}
     onMouseLeave() {}
     onMouseEnter() {}
-    floodFill(coord){
+    floodFill(coord) {
         var newPos,
             x,
             y,
@@ -38,12 +36,9 @@ class PaintBucket extends PaintFunction {
             reachLeft,
             reachRight
 
-
         this.pixelStack.push(coord)
-        // console.log(this.pixelStack[0])
+
         while (this.pixelStack.length) {
-
-
             newPos = this.pixelStack.pop();
             x = newPos[0];
             y = newPos[1];
@@ -51,14 +46,11 @@ class PaintBucket extends PaintFunction {
             //get current pixel position
             pixelPos = (y * canvasReal.width + x) * 4;
 
-
             //go up as long as the color matches and are inside the canvas
             while (y >= 0 && this.matchStartColor(pixelPos)) {
                 y -= 1;
                 pixelPos -= canvasReal.width * 4;
             }
-
-
             pixelPos += canvasReal.width * 4;
             y += 1;
             reachLeft = false;
@@ -69,30 +61,28 @@ class PaintBucket extends PaintFunction {
                 y += 1;
                 this.colorPixel(pixelPos);
 
-
+                //check left pixel
                 if (x > 0) {
-                    // console.log(this.matchStartColor(pixelPos - 4))
+                    if (this.matchStartColor(pixelPos - 4)) {
 
-                    // if (this.matchStartColor(pixelPos - 4)) {
-                        
-                    //     if (!reachLeft) {
-                    //         //add pixel to stack
-                    //         this.pixelStack.push([x - 1, y])
-                    //         //prevent adding pixel that will eventually handled by the downward march of the pixel we just add
-                    //         reachLeft = true;
-                    //     }
+                        if (!reachLeft) {
+                            //add pixel to stack
+                            this.pixelStack.push([x - 1, y])
+                            //prevent adding pixel that will eventually handled by the downward march of the pixel we just add
+                            reachLeft = true;
+                        }
 
-                    // } else if (reachLeft) {
-                    //     reachLeft = false;
-                    // }
+                    } else if (reachLeft) {
+                        reachLeft = false;
+                    }
                 }
 
-                // look at right
+                // check right pixel
                 if (x < canvasReal.width - 1) {
                     if (this.matchStartColor(pixelPos + 4)) {
                         if (!reachRight) {
                             //add pixel to stack
-                            this.pixelStack.push(x + 1, y);
+                            this.pixelStack.push([x + 1, y]);
                             reachRight = true;
                         }
                     } else if (reachRight) {
@@ -104,34 +94,46 @@ class PaintBucket extends PaintFunction {
             }
 
         }
-        console.log(this.imgData)
 
     }
     //check curPixel equal to starPixel
-    matchStartColor(pixelPos, startR, startG, startB) {
-        startR = 0
-        startG = 0
-        startB = 0
-
+    matchStartColor(pixelPos) {
         var r = this.imgData.data[pixelPos];
         var g = this.imgData.data[pixelPos + 1];
         var b = this.imgData.data[pixelPos + 2];
-        //   console.log(r,g,b)
-        //   console.log(startR, startG, startB)
-        //   console.log((r == startR && g == startG && b == startB));
-
-        return (r === startR && g === startG && b === startB);
-
+        return (r === this.startR && g === this.startG && b === this.startB);
     }
-
+    //fill current color
     colorPixel(pixelPos) {
-        
         this.imgData.data[pixelPos] = this.curColor.r;
         this.imgData.data[pixelPos + 1] = this.curColor.g;
         this.imgData.data[pixelPos + 2] = this.curColor.b;
         this.imgData.data[pixelPos + 3] = 255;
-        //   console.log('fill')
-        //   console.log(this.imgData.data[pixelPos],this.imgData.data[pixelPos + 1],this.imgData.data[pixelPos +2],this.imgData.data[pixelPos+3])
-
+    }
+    //convert hex to rgb color
+    HEXtoRGB() {
+        var hex = document.getElementById("color").value;
+        if (hex.charAt(0) === '#') {
+            hex = hex.substr(1);
+        }
+        if ((hex.length < 2) || (hex.length > 6)) {
+            return false;
+        }
+        var values = hex.split(''),
+            r,
+            g,
+            b;
+        if (hex.length === 6) {
+            r = parseInt(values[0].toString() + values[1].toString(), 16);
+            g = parseInt(values[2].toString() + values[3].toString(), 16);
+            b = parseInt(values[4].toString() + values[5].toString(), 16);
+        } else {
+            return false;
+        }
+        return this.curColor = {
+            r,
+            g,
+            b
+        }
     }
 }
