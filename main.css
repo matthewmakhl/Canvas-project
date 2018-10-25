@@ -55,9 +55,10 @@ body {
     display:flex;
     align-content: center;
     padding: 10px;
+    cursor: pointer;
 }
 
-#undo,#redo,#zoomin,#zoomout{
+.header-section i{
     font-size: 15px;
 }
 
@@ -65,12 +66,6 @@ header i {
     color: white;
     font-size: 40px;
     margin: auto auto;
-}
-
-i.material-icons {
-    font-size: 3.5vw;
-    max-width: 35px;
-    max-height: 35px;
 }
 
 header {
@@ -85,6 +80,7 @@ header {
 #tool-bar {
     height: 90vh;
     width: 6vw;
+    max-width: 60px;
     top: 10vh;
     background-color: orange;
     position: fixed;
@@ -93,11 +89,11 @@ header {
 }
 
 #display {
-    height: 35vh;
-    width: 6vw;
+    height: 60px;
+    width: 60px;
     top: 10vh;
-    left: 15vh;
-    background-color: green;
+    left: 75px;
+    background-color: #668ad8;
     position: fixed;
     z-index: 10;
 }
@@ -105,28 +101,31 @@ header {
 
 #display div {
     cursor: pointer;
-    font-size: 2.5vw;
+    font-size: 25px;
     color: white;
     padding: 5px;
-    width: 5vw;
-    max-width: 60px;
-    height: 5vw;
-    max-height: 60px;
+    width: 50px;
+    height: 50px;
     text-align: center;
-    margin: 0.5vw;
+    margin: 5px;
 
+}
+
+i.material-icons {
+    font-size: 30px;
 }
 
 #tool-bar div {
     cursor: pointer;
-    font-size: 2.5vw;
+    font-size: 20px;
     color: white;
     padding: 5px;
     width: 5vw;
     max-width: 50px;
     height: 5vw;
+    max-height: 50px;
     text-align: center;
-    margin: 0.5vw;
+    margin: 5px;
 }
 
 .press-btn{
@@ -157,3 +156,11 @@ canvas {
 #canvas-real, #canvas-draft {
     border: solid;
 }
+
+i.fas.fa-square{
+    display: none;
+}
+i.fas.fa-braille{
+    display: none;
+}
+

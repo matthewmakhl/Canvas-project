@@ -27,15 +27,20 @@ class TypeText extends PaintFunction{
     onMouseEnter(){}
 
     onType(coord,e){
+        var keycode = parseInt(e.which);
+        if (this.typing==1) {
+            this.typedText += String.fromCharCode(keycode);
+            this.type(contextDraft);
+        }
+    }
+
+    onPressDown(coord,e){
         var keycode = parseInt(e.which); //delete or backspace
         if (this.typing==1) {
             if (keycode == 46 || keycode == 8) {
                 event.preventDefault(); //prevent back navigation from backspace
-                this.typedText = this.typedText.slice(0,this.typedText.length-1);
                 this.typedText = this.typedText.replace('║','');
-                this.type(contextDraft);
-            } else {
-                this.typedText += String.fromCharCode(keycode);
+                this.typedText = this.typedText.slice(0,this.typedText.length-1);
                 this.type(contextDraft);
             }
         }

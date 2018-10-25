@@ -23,8 +23,9 @@ let selected = {
     WIDTHUP: 0, 
     WIDTHDOWN: 0,
     //kevin
-    BUCKET: 0
-
+    BUCKET: 0,
+    FILL: 0,
+    DASH: 0
 }
 let mouseFunction = ['#canvas-draft','#canvas-move'];
 let dragLocation = [-1000,-1500];
@@ -98,6 +99,22 @@ $(document).keypress(function(e){
     }
 });
 
+$(document).keydown(function(e){
+    if (selected.main) {
+        let mouseX = e.offsetX;
+        let mouseY = e.offsetY;
+        currentFunction.onPressDown([mouseX,mouseY],e);
+    }
+});
+
+$(document).keyup(function(e){
+    if (selected.main) {
+        let mouseX = e.offsetX;
+        let mouseY = e.offsetY;
+        currentFunction.onPressUp([mouseX,mouseY],e);
+    }
+});
+
 class PaintFunction{
     constructor(){}
     onMouseDown(){}
@@ -106,6 +123,9 @@ class PaintFunction{
     onMouseUp(){}
     onMouseLeave(){}
     onMouseEnter(){}
+    onType(){}
+    onPressDown(){}
+    onPressUp(){}
 } 
 
 // ==================================
@@ -172,7 +192,7 @@ $(`#tool-bar #CIRCLE`).click(function(){
     };
 })
 
-$(`#tool-bar #DRAG`).click(function(){
+$(`.header-section #DRAG`).click(function(){
     if (selected.DRAG==0){
         unselectOther('DRAG');
         selected.main=1;
@@ -294,7 +314,6 @@ $(`#tool-bar #TYPE`).click(function(){
         $('body').css('cursor','default');
     };
 })
-
 $(`#ZOOMIN`).click(function () {
     if (selected.ZOOMIN == 0) {
         unselectOther('ZOOMIN');
@@ -328,6 +347,35 @@ $(`#ZOOMOUT`).click(function () {
         currentFunction = {};
     };
 })
+
+$(`#FILL`).click(function () {
+    if (selected.FILL == 0) {
+        selected.FILL = 1;
+        $(`#FILL`).addClass('active');
+        $('.header-section i.fas.fa-square').css("display", "inline")
+        $('.header-section i.far.fa-square').css("display", "none")
+    } else {
+        selected.FILL = 0;
+        $(`#FILL`).removeClass('active');
+        $('.header-section i.far.fa-square').css("display", "inline")
+        $('.header-section i.fas.fa-square').css("display", "none")
+    };
+})
+
+$(`#DASH`).click(function () {
+    if (selected.DASH == 0) {
+        selected.DASH = 1;
+        $(`#DASH`).addClass('active');
+        $('.header-section i.fas.fa-braille').css("display", "inline")
+        $('.header-section i.fas.fa-align-justify').css("display", "none")
+    } else {
+        selected.DASH = 0;
+        $(`#DASH`).removeClass('active');
+        $('.header-section i.fas.fa-align-justify').css("display", "inline")
+        $('.header-section i.fas.fa-braille').css("display", "none")
+    };
+})
+
 
  $(`#UNDO`).mousedown(function () {
     unselectOther('UNDO');
@@ -390,7 +438,7 @@ setInterval(
 
 function unselectOther(id){
     for (let i in selected) {
-        if ((i != 'main')&&(selected[i]!=0)){
+        if ((i != 'main')&&(selected[i]!=0)&&(i != 'FILL')){
             $(`#tool-bar #${i}`).trigger('click');
             $(`.header-section #${i}`).trigger('click');
         }

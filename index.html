@@ -20,56 +20,64 @@
             <i class="fas fa-paint-brush"></i>
         </div>
          <section class="header-section">
-                <input type="color" text="hi" value="#fff000" id="color" title="Color Selection">
-                <section id="header-tool-bar">
-                <div id="WIDTHUP" class="press-btn" title="Width Up">
-                    <i class="fa fa-arrow-up" id="arrowup"></i> 
-                </div>
-                <div id="WIDTHDOWN" class="press-btn" title="Width Down">
-                    <i class="fa fa-arrow-down" id="arrowdown"></i> 
-                </div>
-                </section>
-                <input type="text" name="valuebox" value="5" id="valuebox" title="Width Input" >
-                <div id="UNDO" class="press-btn header-bigicon" title="Undo">
-                    <i class="fa fa-undo" id="undo"></i> <!-- undo -->
-                </div>
-                <div id="REDO" class="press-btn header-bigicon" title="Redo">
-                    <i class="fa fa-redo" id="redo"></i> <!-- redo -->
-                </div>
-                <div id="ZOOMIN" class="press-btn header-bigicon" title="Zoom In">
-                    <i class="fa fa-search-plus" id="zoomin"></i> 
-                </div>
-                <div id="ZOOMOUT" class="press-btn header-bigicon" title="Zoom Out">
-                    <i class="fa fa-search-minus" id="zoomout"></i>
-                </div>
-         </section>
+            <input type="color" text="hi" value="#004080" id="color" title="Color Selection"  style="cursor:pointer">
+            <section id="header-tool-bar">
+            <div id="WIDTHUP" class="press-btn" title="Width Up" style="cursor:pointer">
+                <i class="fa fa-arrow-up" id="arrowup"></i> 
+            </div>
+            <div id="WIDTHDOWN" class="press-btn" title="Width Down" style="cursor:pointer">
+                <i class="fa fa-arrow-down" id="arrowdown"></i> 
+            </div>
+            </section>
+            <input type="text" name="valuebox" value="5" id="valuebox" title="Width Input" >
+            <div id="UNDO" class="press-btn header-bigicon" title="Undo">
+                <i class="fa fa-undo" id="undo"></i> <!-- undo -->
+            </div>
+            <div id="REDO" class="press-btn header-bigicon" title="Redo">
+                <i class="fa fa-redo" id="redo"></i> <!-- redo -->
+            </div>
+            <div id="ZOOMIN" class="press-btn header-bigicon" title="Zoom In">
+                <i class="fa fa-search-plus" id="zoomin"></i> 
+            </div>
+            <div id="ZOOMOUT" class="press-btn header-bigicon" title="Zoom Out">
+                <i class="fa fa-search-minus" id="zoomout"></i>
+            </div>
+            <div id="DRAG" class="press-btn header-bigicon" title="Drag">
+                <i class="fas fa-arrows-alt"></i>
+            </div>
+            <div id="FILL" class="press-btn header-bigicon" title="Fill or unfill shape">
+                <i class="far fa-square"></i>
+                <i class="fas fa-square"></i>
+
+            </div>
+            <div id="DASH" class="press-btn header-bigicon" title="dash or solid line">
+                <i class="fas fa-braille"></i>
+                <i  class="fas fa-align-justify"></i>
+            </div>
+
+        </section>
     </header>
     <section id="tool-bar">
         <div id="CIRCLE" class="press-btn">
-            <i class="far fa-circle" title="Circle"></i>
+            <i class="far fa-circle" title="Ellipse (Press shift to draw circle)"></i>
         </div>
-        <div id="DRAG" class="press-btn">
-            <i class="fas fa-arrows-alt" title="Drag"></i>
-        </div>
+        
         <div id="PENCIL" class="press-btn">
             <i class="fas fa-pencil-alt" title="Pencil"></i>
         </div>
-        <div id="STRAIGHTLINE" class="press-btn">
+        <div id="STRAIGHTLINE" class="press-btn" title="Straight line">
             <i class="material-icons" title="Straight line">timeline</i>
         </div>
-        <div id="RECTANGLE" class="press-btn">
+        <div id="RECTANGLE" class="press-btn" title="Rectangle (Press shift to draw square)">
             <i class="far fa-square"></i>
         </div>
         <div id="SELECTION" class="press-btn" title="Select">
             <i class="material-icons">select_all</i>
         </div>
-        <div id="CLEAR" class="press-btn" title="Clear all">
-            <i class="material-icons">clear</i>
-        </div>
         <div id="TYPE" class="press-btn" title="Text">
             <i class="material-icons">text_format</i>
         </div>
-        <div id="POLYGON" class="press-btn">
+        <div id="POLYGON" class="press-btn" title="Polygon">
             <i class="fas fa-draw-polygon"></i>
         </div>
         <div id="PEANUT" class="press-btn" title="Piss, want some nuts?">
@@ -77,7 +85,10 @@
         </div>
         <!-- kevin -->
         <div id="BUCKET" class="press-btn">
-            <i class="fas fa-fill-drip"></i>        
+            <i class="fas fa-fill-drip"></i> 
+        </div>       
+        <div id="CLEAR" class="press-btn" title="Clear all">
+            <i class="material-icons">clear</i>
         </div>
     </section>
     
@@ -85,18 +96,7 @@
         <div id="finish" class="press-btn" style=" background: orange ">
             <i class="far fa-check-circle"></i>
         </div>
-        <div id="lineDash" class="press-btn" style=" background: pink" >
-            <i class="fas fa-braille"></i>
-        </div>
-        <div id="lineSolid" class="press-btn" style=" background: pink">
-            <i  class="fas fa-align-justify"></i>
-        </div>
-        <!-- <div id="emptyPoly" class="press-btn" style="background: black">
-            <i class="far fa-star-half"></i>
-        </div>
-        <div id="fillPoly" class="press-btn" style="background: black">
-            <i class="fas fa-star-half"></i>
-        </div> -->
+
     </div>
   
     <div class="frame">

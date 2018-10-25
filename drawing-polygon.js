@@ -13,21 +13,7 @@ class DrawingPolygon extends PaintFunction {
         this.contextReal.lineWidth = 5;
         this.polygonCoord = [];
         this.down = false;
-        this.line = $('#lineDash').click(function(e){
-                        console.log('click')
-                        currentFunction.contextReal.setLineDash([5,5])
-                    })
-        this.dash = $('#lineSolid').click(function(e){
-                        console.log('click')
-                        currentFunction.contextReal.setLineDash([])
-                    })
-        // this.empty = $('#emptyPoly').click(function(e){
-        //                 currentFunction.contextReal.fillStyle = 'white'
-        //                 console.log('empty')
-        //             })
-        // this.fill = $('#fillPoly').click(function(e){
-        //                 currentFunction.contextReal.fillStyle = ''
-        //             })
+
         this.finish = $('#finish').click(function(e){
             //terminate mousemove
             currentFunction.down=false;
@@ -46,6 +32,7 @@ class DrawingPolygon extends PaintFunction {
         this.origY = coord[1];
         this.polygonCoord.push({upX: this.origX,upY:this.origY})
         this.down = true;
+        this.isDash(this.contextReal);
         if(this.polygonCoord.length > 1){
         for (var x=1; x<this.polygonCoord.length;x++){
             this.contextReal.beginPath();
@@ -76,7 +63,6 @@ class DrawingPolygon extends PaintFunction {
                 for (var x=0;x<this.polygonCoord.length;x++){
                     this.contextDraft.lineTo(this.polygonCoord[x].upX,this.polygonCoord[x].upY)                
                 }
-                // this.contextDraft.fill();
             }
     };
 
@@ -85,13 +71,31 @@ class DrawingPolygon extends PaintFunction {
 
     onMouseLeave(){};
     onMouseEnter(){};
-
+    //set dash line
+    isDash(ctx){
+        if (selected.DASH==1){
+            ctx.setLineDash([5,5])
+        } else {
+            ctx.setLineDash([])
+        }
+    }
     finishPolygon(ctx, array){
         ctx.moveTo(array[0].upX,array[0].upY)
         for (var i=1;i<array.length;i++){
             ctx.lineTo(array[i].upX,array[i].upY);
         }
-        ctx.fill();
+        
+
+
+        if (selected.FILL==0){
+            ctx.beginPath();
+            ctx.moveTo(array[array.length-1].upX,array[array.length-1].upY);
+            ctx.lineTo(array[0].upX,array[0].upY);
+            ctx.closePath();
+            ctx.stroke();  
+        } else {
+            ctx.fill();
+        }
     }
     
  
