@@ -64,8 +64,8 @@ for (let i in mouseFunction) {
             let mouseY = e.offsetY;
             currentFunction.onMouseUp([mouseX, mouseY], e);
         }
-        ImgS.undoList.push(canvasReal.toDataURL()); //storing img for every mouseup 
-        ImgS.redoList = []; // redolist will be blank
+        ImgS.undoList.push(canvasReal.toDataURL());
+        ImgS.redoList = [];
     });
 
     $(mouseFunction[i]).mouseleave(function (e) {
@@ -279,7 +279,6 @@ $(`.header-section #ZOOMIN`).click(function () {
         $(`#ZOOMIN`).addClass('active');
         $('.frame').css({ "cursor": "zoom-in" })
         currentFunction = new Zooming('zoomin', contextReal);
-        console.log('hi');
     } else {
         selected.main = 0;
         selected.ZOOMIN = 0;
