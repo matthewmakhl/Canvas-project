@@ -13,10 +13,14 @@ class Selection extends PaintFunction{
         this.origY2;
         this.endX;
         this.endY;
-        this.testImage = new Image();
+        this.selectedImage = new Image();
         this.firstMove = 0;
     }
     
+    //When selectionBox = 0, dragging draw a dashed line box
+    //When selectionBox = 1, dragging inside the dashed line box move the selected image
+    //When selectionBox = 1, dragging outside the dashed line box will fix the selected image to its current position, and reset selectionBox to 0
+
     onMouseDown(coord,event){
         if (this.selectionBox == 0) {
             this.origX = coord[0];
@@ -149,12 +153,12 @@ class Selection extends PaintFunction{
             this.capSelection_canvas.height//Place Height
         );
 
-        this.testImage.src = this.capSelection_canvas.toDataURL();
+        this.selectedImage.src = this.capSelection_canvas.toDataURL();
         this.firstMove = 0;
     }
     
     drawCapture(ctx,x,y){
-        ctx.drawImage(this.testImage, x, y);
+        ctx.drawImage(this.selectedImage, x, y);
     }
 
     adjustxy(x,y){
