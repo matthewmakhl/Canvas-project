@@ -10,3 +10,4 @@ $("#valuebox").on('keyup', function (e) {  // keyup function for detecting the k
         }
     }
 });
+
