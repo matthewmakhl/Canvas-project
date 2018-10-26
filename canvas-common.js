@@ -440,7 +440,7 @@ setInterval(
 
 function unselectOther(id){
     for (let i in selected) {
-        if ((i != 'main')&&(selected[i]!=0)&&(i != 'FILL')){
+        if ((i != 'main')&&(selected[i]!=0)&&(i != 'FILL')&&(i != 'DASH')){
             $(`#tool-bar #${i}`).trigger('click');
             $(`.header-section #${i}`).trigger('click');
         }
