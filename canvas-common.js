@@ -28,7 +28,7 @@ let selected = {
     DASH: 0
 }
 let mouseFunction = ['#canvas-draft','#canvas-move'];
-let dragLocation = [-1000,-1500];
+let dragLocation = [-1000,-1500]; //for drag function
 var valuedetect = document.getElementById("valuebox").value;
 
 let ImgS = {
@@ -37,9 +37,9 @@ let ImgS = {
 };
 $(function () {
     ImgS.undoList.push(canvasReal.toDataURL());
-    
 }); // for every time of page ready, the imagine will be stored into the undolist first
 
+// Similar to CMS example
 for (let i in mouseFunction) {
     $(mouseFunction[i]).mousedown(function(e){
         if (selected.main) {
@@ -91,6 +91,7 @@ for (let i in mouseFunction) {
 
 }
 
+// On top of those incl. in CMS, we also added these 3 function
 $(document).keypress(function(e){
     if (selected.main&&selected.TYPE) {
         let mouseX = e.offsetX;
@@ -99,6 +100,7 @@ $(document).keypress(function(e){
     }
 });
 
+//keypress (Detect type character) vs keydown (Detect backspace/shift)
 $(document).keydown(function(e){
     if (selected.main) {
         let mouseX = e.offsetX;

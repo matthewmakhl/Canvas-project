@@ -4,15 +4,6 @@ class DrawingPeanut extends PaintFunction {
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
         this.nutImage = new Image();
-        this.nutImage.src = `./images/nut1.png`;
-        this.nutImage.src = `./images/nut2.png`;
-        this.nutImage.src = `./images/nut3.png`;
-        this.nutImage.src = `./images/nut4.png`;
-        this.nutImage.src = `./images/nut5.png`;
-        this.nutImage.src = `./images/nut6.png`;
-        this.nutImage.src = `./images/nut7.png`;
-        this.nutImage.src = `./images/nut8.png`;
-        this.nutImage.src = `./images/nut9.png`;
     }
         
     onMouseDown(coord){}

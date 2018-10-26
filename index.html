@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- Main.css -->
     <link rel="stylesheet" href="./main.css">
     <title>A new paint!</title>
 </head>
@@ -19,17 +15,20 @@
         <div id="icon">
             <i class="fas fa-paint-brush"></i>
         </div>
+        <!-- Header tool bar -->
          <section class="header-section">
+             <!-- Input color type -->
             <input type="color" text="hi" value="#004080" id="color" title="Color Selection"  style="cursor:pointer">
             <section id="header-tool-bar">
-            <div id="WIDTHUP" class="press-btn" title="Width Up" style="cursor:pointer">
-                <i class="fa fa-arrow-up" id="arrowup"></i> 
-            </div>
-            <div id="WIDTHDOWN" class="press-btn" title="Width Down" style="cursor:pointer">
-                <i class="fa fa-arrow-down" id="arrowdown"></i> 
-            </div>
+                <!-- 1st button, with press-btn class -->
+                <div id="WIDTHUP" class="press-btn" title=" Line Width Up" style="cursor:pointer">
+                    <i class="fa fa-arrow-up" id="arrowup"></i> 
+                </div>
+                <div id="WIDTHDOWN" class="press-btn" title="Line Width Down" style="cursor:pointer">
+                    <i class="fa fa-arrow-down" id="arrowdown"></i> 
+                </div>
             </section>
-            <input type="text" name="valuebox" value="5" id="valuebox" title="Width Input" >
+            <input type="text" name="valuebox" value="5" id="valuebox" title="Line Width Input" >
             <div id="UNDO" class="press-btn header-bigicon" title="Undo">
                 <i class="fa fa-undo" id="undo"></i> <!-- undo -->
             </div>
@@ -57,6 +56,8 @@
 
         </section>
     </header>
+
+    <!-- Left tool bar -->
     <section id="tool-bar">
         <div id="CIRCLE" class="press-btn">
             <i class="far fa-circle" title="Ellipse (Press shift to draw circle)"></i>
@@ -71,7 +72,7 @@
         <div id="RECTANGLE" class="press-btn" title="Rectangle (Press shift to draw square)">
             <i class="far fa-square"></i>
         </div>
-        <div id="SELECTION" class="press-btn" title="Select">
+        <div id="SELECTION" class="press-btn" title="Select and Move">
             <i class="material-icons">select_all</i>
         </div>
         <div id="TYPE" class="press-btn" title="Text">
@@ -92,23 +93,24 @@
         </div>
     </section>
     
+    <!-- Popup tool bar for polygon -->
     <div id="display" style="display: none">
         <div id="finish" class="press-btn" style=" background: orange ">
             <i class="far fa-check-circle"></i>
         </div>
 
     </div>
-  
+    
+    <!-- We have 3 canvas -->
     <div class="frame">
         <canvas id="canvas-move" width="2000" height="2000"></canvas>
         <canvas id="canvas-real" width="2000" height="2000"></canvas>
         <canvas id="canvas-draft" width="2000" height="2000"></canvas>
     </div>
 
-    <!-- <div id="viewpoint"></div> -->
-
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Other js file -->
     <script src="./canvas-common.js"></script>
     <script src="./drag.js"></script>
     <script src="./circle.js"></script>

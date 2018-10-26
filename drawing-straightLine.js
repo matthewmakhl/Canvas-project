@@ -25,6 +25,7 @@ class DrawingStraightLine extends PaintFunction {
     };
     onMouseUp(coord, event){
         this.contextReal.strokeStyle = document.getElementById("color").value;
+        this.contextDraft.clearRect(0,0,canvasReal.width,canvasReal.height);
         this.contextReal.lineJoin = 'round';
         this.contextReal.lineWidth = 5;
         this.isDash(contextReal);
