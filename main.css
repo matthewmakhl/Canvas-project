@@ -130,13 +130,13 @@ i.material-icons {
 
 .press-btn{
     background: #668ad8;/*Button Color*/
-    border-bottom: solid 4px #627295;
+    border-bottom: solid 4px #627295;/*Button shadow*/
     border-radius: 3px;
 }
 .press-btn.active {/*on Click*/
-    background: #5C78B9;/*Button Color*/
+    background: #5C78B9;/*Button Color change to darker*/
     transform: translateY(4px);/*Move down*/
-    border-bottom: none;/*disappears*/
+    border-bottom: none;/*Button shadow disappear*/
 }
 
 div.frame {
@@ -149,6 +149,7 @@ div.frame {
 canvas {
     background-color: transparent;
     position: absolute;
+     /* Move initial view to the center of the canvas */
     left: -1000px;
     top: -1500px;
 }
