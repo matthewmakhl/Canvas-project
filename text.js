@@ -47,7 +47,7 @@ class TypeText extends PaintFunction{
     }
 
     type(ctx){
-        contextDraft.clearRect(0,0,5000,5000);
+        contextDraft.clearRect(0,0,3000,3000);
         ctx.font = '30px Arial';
         ctx.fillText(this.typedText,this.origX,this.origY);
     }

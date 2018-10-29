@@ -72,13 +72,13 @@ body {
 }
 
 header i {
-    color: white;
+    color: #ffffff;
     font-size: 40px;
     margin: auto auto;
 }
 
 header {
-    background-color: #555;
+    background-color: #555555;
     height: 10vh;
     width: 100vw;
     position: fixed;
@@ -91,7 +91,7 @@ header {
     width: 6vw;
     max-width: 60px;
     top: 10vh;
-    background-color: orange;
+    background-color: #ffa500;
     position: fixed;
     z-index: 10;
     overflow: auto;
@@ -111,7 +111,7 @@ header {
 #display div {
     cursor: pointer;
     font-size: 25px;
-    color: white;
+    color: #ffffff;
     padding: 5px;
     width: 50px;
     height: 50px;
@@ -127,7 +127,7 @@ i.material-icons {
 #tool-bar div {
     cursor: pointer;
     font-size: 20px;
-    color: white;
+    color: #ffffff;
     padding: 5px;
     width: 5vw;
     max-width: 50px;

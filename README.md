@@ -32,3 +32,4 @@
 7. Clear all drawing on Canvas
 8. Fill and unfill button for circle, square and polygon
 9. Drag canvas around
+10. User interface (HTML and CSS)
